@@ -1,12 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+const Queue = require('./queue');
+
 
 const app = express();
 const secretKey = 'minha-chave-secreta';
 
 // Middleware para interpretar o corpo da requisição como um objeto JSON
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Simula um banco de dados de usuários
 const users = [];
@@ -65,6 +68,30 @@ app.get('/protegido', (req, res) => {
     res.status(401).json({ message: 'Token inválido' });
   }
 });
+
+const queue = new Queue();
+
+// Adiciona um elemento na fila
+app.post('/queue/enqueue', (req, res) => {
+  const element = req.body.element;
+
+  queue.enqueue(element);
+
+  res.send('Elemento adicionado à fila.');
+});
+
+// Remove um elemento da fila
+app.delete('/queue/dequeue', (req, res) => {
+  if (queue.isEmpty()) {
+    res.status(400).send('A fila está vazia.');
+  } else {
+    const element = queue.dequeue();
+
+    res.send(`Elemento removido da fila: ${element}`);
+  }
+});
+
+
 
 // Inicia o servidor na porta 3000
 app.listen(3000, () => {
