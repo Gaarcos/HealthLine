@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
-//  batatinha quando nasce espalharrama pelo chão
 const app = express();
 const secretKey = 'minha-chave-secreta';
 
