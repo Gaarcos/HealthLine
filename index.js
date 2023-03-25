@@ -91,6 +91,14 @@ app.delete('/queue/dequeue', (req, res) => {
   }
 });
 
+// Retorna o tamanho da fila
+app.get('/queue/size', (req, res) => {
+  const size = queue.size();
+
+  res.send(`Tamanho da fila: ${size}`);
+});
+
+
 
 
 // Inicia o servidor na porta 3000
