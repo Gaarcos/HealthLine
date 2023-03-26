@@ -64,6 +64,10 @@ const userSchema = new mongoose.Schema({
     required:true,
     trim:true,
   },
+  prescriptions:{
+    type:String,
+    trim:true,
+  },
 });
 
 const User = mongoose.model('User', userSchema);
