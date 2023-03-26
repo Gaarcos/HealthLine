@@ -67,10 +67,44 @@ app.post('/usuario/infos', (req, res) => {
   if (!user) {
     return res.status(401).json({ message: 'Email inválido' });
   }
-
-  res.json({ nome: user.fullname, email: user.email, telefone: user.phone, CEP: user.cep, endereço: user.adress, nascimento: user.birthDate });
-
+  if(user.complement != null){
+    res.json({ nome: user.fullname, email: user.email, telefone: user.phone, CEP: user.cep, endereço: user.adress, número: user.adressNumber, nascimento: user.birthDate, estadoCivil: user.civilState });
+  }
+  res.json({ nome: user.fullname, email: user.email, telefone: user.phone, CEP: user.cep, endereço: user.adress, número: user.adressNumber, complemento: user.adressComplement, nascimento: user.birthDate, estadoCivil: user.civilState });
 });
+
+//rota para editar informações do usuário
+app.post('/usuario/infos/edit', (req, res) => {
+  const{ email, name, phone, cep, adress, number, complement, civilState} = req.body;
+
+  const user = users.find(user => user.email === email);
+  if (!user) {
+    return res.status(401).json({ message: 'Email inválido' });
+  }
+  if(user.fullName !=null){
+    user.fullname = name;
+  }
+  if(user.phone !=null){
+    user.phone = phone;
+  }
+  if(user.cep !=null){
+    user.cep = cep;
+  }
+  if(user.adress !=null){
+    user.adress = adress;
+  }
+  if(user.number !=null){
+    user.number = number;
+  }
+  if(user.complement !=null){
+    user.complement = complement;
+  }
+  if(user.civilState !=null){
+    user.civilState = civilState;
+  }
+
+  res.send('Alterações feitas!')
+})
 
 // Rota protegida
 app.get('/protegido', (req, res) => {
