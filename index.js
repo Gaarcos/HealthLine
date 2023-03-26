@@ -16,7 +16,8 @@ const users = [];
 
 // Rota de cadastro de usuário
 app.post('/cadastro', (req, res) => {
-  const { email, password, fullName, phone, cep, adress, adressNumber, adressComplement, gender, birthDate, cpf, civilState} = req.body;
+
+  const { email, password, fullName, phone, cep, adress, adressNumber, adressComplement, sex, birthDate, cpf, civilState} = req.body;
 
   // Verifica se o email já está em uso
   if (users.find(user => user.email === email)) {
@@ -28,8 +29,9 @@ app.post('/cadastro', (req, res) => {
   if(users.find(user => user.phone === phone)){
     return res.status(422).json({ message: 'Telefone já cadastrado'});
   }
+
   // Cria um novo usuário e o adiciona no banco de dados
-  const newUser = { email, password , fullName, phone, cep, adress, adressNumber, adressComplement, gender, birthDate, cpf, civilState};
+  const newUser = { email, password , fullName, phone, cep, adress, adressNumber, adressComplement, sex, birthDate, cpf, civilState};
   users.push(newUser);
 
   // Retorna uma mensagem de sucesso
@@ -45,12 +47,13 @@ app.post('/login', (req, res) => {
   if (!user) {
     return res.status(401).json({ message: 'Email ou senha inválidos' });
   }
+  return res.send('login feito!')
 
   // Gera um token JWT com a chave secreta
-  const token = jwt.sign({ email }, secretKey);
+  // const token = jwt.sign({ email }, secretKey);
 
   // Retorna o token
-  res.json({ token });
+  // res.json({ token });
 });
 
 app.post('/usuario/infos', (req,res) =>{
