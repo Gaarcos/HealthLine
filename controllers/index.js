@@ -219,31 +219,32 @@ app.get('/priorityQueue/elements', (req, res) => {
   res.send(`Elementos na fila prioritária: ${elements.map(e => `${e.name}`).join(', ')}`);
 });
 
-// //Retorna as receitas de um usuário
-// app.get('/getPrescription', (req,res) =>{
-//   const { email } = req.body;
-//   // Verifica se o email e a senha são válidos
-//   const user = users.find(user => user.email === email);
-//   if (!user) {
-//     return res.status(401).json({ message: 'Email inválido' });
-//   }
+//Retorna as receitas de um usuário
+app.get('/getPrescription', (req,res) =>{
+  const { email } = req.body;
+  // Verifica se o email e a senha são válidos
+  const user = users.find(user => user.email === email);
+  if (!user) {
+    return res.status(401).json({ message: 'Email inválido' });
+  }
 
-//   res.json({ receita: user.receita });
+  res.json({ receita: user.prescriptions });
 
-//   });
-// app.post('/sendPrescription', (req,res) =>{
-//   const { prescription } = req.body;
-//   const { email } = req.body;
-//   // Verifica se o email e a senha são válidos
-//   const user = users.find(user => user.email === email);
-//   if (!user) {
-//     return res.status(401).json({ message: 'Email inválido' });
-//   }
-//   user = users.push(user => user.prescription = prescription);
+  });
 
-//   // Retorna uma mensagem de sucesso
-//   res.json({ prescrições: 'Prescrição adicionada com sucesso' });
-// })
+app.post('/sendPrescription', (req,res) =>{
+  const { email , prescription } = req.body;
+  
+  // Verifica se o email e a senha são válidos
+  const user = users.find(user => user.email === email);
+  if (!user) {
+    return res.status(401).json({ message: 'Email inválido' });
+  }
+  user.prescriptions = prescription;
+
+  // Retorna uma mensagem de sucesso
+  res.send(`Prescrição adicionada com sucesso: ${user.prescriptions}`);
+})
 // Inicia o servidor na porta 3000
 app.listen(3000, () => {
   console.log('Servidor iniciado na porta 3000');
