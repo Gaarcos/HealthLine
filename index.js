@@ -16,14 +16,20 @@ const users = [];
 
 // Rota de cadastro de usuário
 app.post('/cadastro', (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, fullName, phone, cep, adress, adressNumber, adressComplement, gender, birthDate, cpf, civilState} = req.body;
 
   // Verifica se o email já está em uso
   if (users.find(user => user.email === email)) {
     return res.status(422).json({ message: 'Email já cadastrado' });
   }
+  if(users.find(user => user.cpf === cpf)){
+    return res.status(422).json({ message: 'CPF já cadastrado'});
+  }
+  if(users.find(user => user.phone === phone)){
+    return res.status(422).json({ message: 'Telefone já cadastrado'});
+  }
   // Cria um novo usuário e o adiciona no banco de dados
-  const newUser = { email, password };
+  const newUser = { email, password , fullName, phone, cep, adress, adressNumber, adressComplement, gender, birthDate, cpf, civilState};
   users.push(newUser);
 
   // Retorna uma mensagem de sucesso
