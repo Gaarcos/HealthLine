@@ -73,21 +73,25 @@ const queue = new Queue();
 
 // Adiciona um elemento na fila
 app.post('/queue/enqueue', (req, res) => {
-  const element = req.body.element;
+  const name = req.query.name;
 
-  queue.enqueue(element);
-
-  res.send('Elemento adicionado à fila.');
+  if (!name) {
+    res.status(400).send('O parâmetros "name" obrigatórios.');
+  } else {
+    queue.enqueue({ name });
+    res.send(`Elemento com nome ${name} adicionado à fila.`);
+  }
 });
+
 
 // Remove um elemento da fila
 app.delete('/queue/dequeue', (req, res) => {
   if (queue.isEmpty()) {
     res.status(400).send('A fila está vazia.');
   } else {
-    const element = queue.dequeue();
+    const name = queue.dequeue();
 
-    res.send(`Elemento removido da fila: ${element}`);
+    res.send(`Elemento removido da fila: ${element.name}`);
   }
 });
 
@@ -97,6 +101,36 @@ app.get('/queue/size', (req, res) => {
 
   res.send(`Tamanho da fila: ${size}`);
 });
+
+// Retorna a posição de um elemento na fila
+app.get('/queue/position', (req, res) => {
+  const elementName = req.query.name;
+
+  if (!elementName) {
+    res.status(400).send('O parâmetro "name" é obrigatório.');
+  } else {
+    const position = queue.indexOf(elementName);
+
+    if (position === -1) {
+      res.send(`O elemento ${elementName} não está na fila.`);
+    }
+    else if(position=== 0){
+      res.send(`O elemento ${elementName} é o proximo a ser chamado`);
+    }
+    else {
+      res.send(`O elemento ${elementName} está na posição ${position} da fila.`);
+    }
+  }
+});
+
+
+// Retorna todos os elementos na fila
+app.get('/queue/elements', (req, res) => {
+  const elements = queue.toArray();
+
+  res.send(`Elementos na fila: ${elements.map(e => `${e.name}: ${e.element}`).join(', ')}`);
+});
+
 
 
 
