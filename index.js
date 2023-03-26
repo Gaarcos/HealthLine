@@ -22,7 +22,6 @@ app.post('/cadastro', (req, res) => {
   if (users.find(user => user.email === email)) {
     return res.status(422).json({ message: 'Email já cadastrado' });
   }
-
   // Cria um novo usuário e o adiciona no banco de dados
   const newUser = { email, password };
   users.push(newUser);
@@ -47,6 +46,19 @@ app.post('/login', (req, res) => {
   // Retorna o token
   res.json({ token });
 });
+
+app.post('/usuario/infos', (req,res) =>{
+  const { email } = req.body;
+
+  // Verifica se o email e a senha são válidos
+  const user = users.find(user => user.email === email);
+  if (!user) {
+    return res.status(401).json({ message: 'Email inválido' });
+  }
+
+  res.json({ nome: 'nome de teste', email: email , telefone: '(99)99999-9999', CEP: '00000-000', endereço: 'Rua de teste, 96, bairro teste, bloco X, apto 99'});
+  
+  });
 
 // Rota protegida
 app.get('/protegido', (req, res) => {
@@ -86,12 +98,13 @@ app.post('/queue/enqueue', (req, res) => {
 
 // Remove um elemento da fila
 app.delete('/queue/dequeue', (req, res) => {
+  const name = req.query.name;
   if (queue.isEmpty()) {
     res.status(400).send('A fila está vazia.');
   } else {
-    const name = queue.dequeue();
+    queue.dequeue();
 
-    res.send(`Elemento removido da fila: ${element.name}`);
+    res.send(`Elemento removido da fila: ${name}`);
   }
 });
 
@@ -118,7 +131,7 @@ app.get('/queue/position', (req, res) => {
       res.send(`O elemento ${elementName} é o proximo a ser chamado`);
     }
     else {
-      res.send(`O elemento ${elementName} está na posição ${position} da fila.`);
+      res.send(`O elemento ${elementName} está na posição ${position + 1} da fila.`);
     }
   }
 });
@@ -128,12 +141,8 @@ app.get('/queue/position', (req, res) => {
 app.get('/queue/elements', (req, res) => {
   const elements = queue.toArray();
 
-  res.send(`Elementos na fila: ${elements.map(e => `${e.name}: ${e.element}`).join(', ')}`);
+  res.send(`Elementos na fila: ${elements.map(e => `${e.name}`).join(', ')}`);
 });
-
-
-
-
 
 // Inicia o servidor na porta 3000
 app.listen(3000, () => {

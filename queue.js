@@ -1,3 +1,12 @@
+// função a ser consertada que remove um elemento específico da queue
+// Array.prototype.removeFromArray = function(elem) {
+//   const index = this.indexOf(elem);
+  
+//   if (index !== -1) {
+//     this.splice(index, 1);
+//   }
+// };
+
 class Queue {
     constructor() {
       this.items = [];
@@ -7,7 +16,10 @@ class Queue {
       this.items.push({ name });
     }
   
-    dequeue() {
+    // dequeue({ name }) {
+    //   return this.items.removeFromArray({ name });
+    // }
+    dequeue(){
       return this.items.shift();
     }
   
