@@ -1,0 +1,93 @@
+/* Define as cores */
+body {
+    background-color: #f2f2f2;
+    font-family: Ubuntu Condensed, sans-serif;
+    font-size: 65px;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    /* Adicione essa regra de estilo */
+    margin-right: 0;
+  }
+  
+  /* Adicione essas regras de estilo */
+  html, body {
+    height: 100%;
+  }
+  
+  header, footer {
+    background-color: #F7A072;
+    height: 132px;
+  }
+  footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  main {
+    min-height: calc(100% - 264px);
+  }
+  
+  form {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+  
+  label {
+    text-align: center;
+    font-family: Ubuntu Condensed, sans-serif;
+    font-size: 25px;
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    font-size: 16px;
+  }
+  
+  button[type="submit"],
+  button[type="button"] {
+    font-family: Ubuntu Condensed, sans-serif;
+ 
+    display: inline-block;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  
+  button[type="submit"] {
+    background-color: #0FA3B1;
+    color: white;
+  }
+  
+  button[type="button"] {
+    background-color: #B73939;
+    color: white;
+  }
+  
+  button[type="submit"]:hover,
+  button[type="button"]:hover {
+    text-decoration: underline;
+  }
+  

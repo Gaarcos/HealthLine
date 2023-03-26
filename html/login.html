@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title>HealthLine</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Login</h1>
-    <form action="/login" method="POST">
-      <div>
-        <label for="email">Email:</label>
-        <input type="email" name="email" required />
-      </div>
-      <div>
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" required />
-      </div>
-      <button type="submit">Entrar</button>
+    <header></header>
+    <h1>HealthLine</h1>
+    <form>
+      <label for="login">Login:</label>
+      <input type="text" id="login" name="login" required><br><br>
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required><br><br>
+      <button id = "entrar"type="submit" name="entrar">Entrar</button>
+      <button id = "criar" type="button" name="criar">Criar</button>
     </form>
-    <p>Não possui uma conta? <a href="/cadastro">Cadastre-se</a></p>
+    <footer></footer>
   </body>
 </html>
