@@ -17,21 +17,21 @@ const users = [];
 // Rota de cadastro de usuário
 app.post('/cadastro', (req, res) => {
 
-  const { email, password, fullName, phone, cep, adress, adressNumber, adressComplement, sex, birthDate, cpf, civilState} = req.body;
+  const { email, password, fullName, phone, cep, adress, adressNumber, adressComplement, sex, birthDate, cpf, civilState } = req.body;
 
   // Verifica se o email já está em uso
   if (users.find(user => user.email === email)) {
     return res.status(422).json({ message: 'Email já cadastrado' });
   }
-  if(users.find(user => user.cpf === cpf)){
-    return res.status(422).json({ message: 'CPF já cadastrado'});
+  if (users.find(user => user.cpf === cpf)) {
+    return res.status(422).json({ message: 'CPF já cadastrado' });
   }
-  if(users.find(user => user.phone === phone)){
-    return res.status(422).json({ message: 'Telefone já cadastrado'});
+  if (users.find(user => user.phone === phone)) {
+    return res.status(422).json({ message: 'Telefone já cadastrado' });
   }
 
   // Cria um novo usuário e o adiciona no banco de dados
-  const newUser = { email, password , fullName, phone, cep, adress, adressNumber, adressComplement, sex, birthDate, cpf, civilState};
+  const newUser = { email, password, fullName, phone, cep, adress, adressNumber, adressComplement, sex, birthDate, cpf, civilState };
   users.push(newUser);
 
   // Retorna uma mensagem de sucesso
@@ -56,7 +56,8 @@ app.post('/login', (req, res) => {
   // res.json({ token });
 });
 
-app.post('/usuario/infos', (req,res) =>{
+//Rota para ver informações do usuário
+app.post('/usuario/infos', (req, res) => {
   const { email } = req.body;
 
   // Verifica se o email e a senha são válidos
@@ -65,9 +66,9 @@ app.post('/usuario/infos', (req,res) =>{
     return res.status(401).json({ message: 'Email inválido' });
   }
 
-  res.json({ nome: user.fullname, email: user.email , telefone: user.phone, CEP: user.cep, endereço: user.adress, nascimento: user.birthDate});
-  
-  });
+  res.json({ nome: user.fullname, email: user.email, telefone: user.phone, CEP: user.cep, endereço: user.adress, nascimento: user.birthDate });
+
+});
 
 // Rota protegida
 app.get('/protegido', (req, res) => {
@@ -136,7 +137,7 @@ app.get('/queue/position', (req, res) => {
     if (position === -1) {
       res.send(`O elemento ${elementName} não está na fila.`);
     }
-    else if(position=== 0){
+    else if (position === 0) {
       res.send(`O elemento ${elementName} é o proximo a ser chamado`);
     }
     else {
@@ -159,7 +160,7 @@ const priorityQueue = new PriorityQueue();
 app.post('/priorityQueue/enqueue', (req, res) => {
   const name = req.query.name;
   const doenca = req.query.doenca;
-  if(doenca != 'morrendo'){
+  if (doenca != 'morrendo') {
     res.status(800).send('você deve entrar na fila normal, pois não atende aos requisitos de prioridade.')
   }
   if (!name) {
@@ -202,7 +203,7 @@ app.get('/priorityQueue/position', (req, res) => {
     if (position === -1) {
       res.send(`O elemento ${elementName} não está na fila prioritária.`);
     }
-    else if(position=== 0){
+    else if (position === 0) {
       res.send(`O elemento ${elementName} é o proximo a ser chamado na fila prioritária`);
     }
     else {
@@ -228,7 +229,7 @@ app.get('/priorityQueue/elements', (req, res) => {
 //   }
 
 //   res.json({ receita: user.receita });
-  
+
 //   });
 // app.post('/sendPrescription', (req,res) =>{
 //   const { prescription } = req.body;
