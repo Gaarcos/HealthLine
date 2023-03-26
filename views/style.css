@@ -1,55 +1,56 @@
-/* Define as cores */
+/* Estilos para todas as telas */
 body {
   background-color: #f2f2f2;
   font-family: 'Ubuntu Condensed', sans-serif;
-  font-size: 65px;
+  font-size: 4.063rem;
   font-weight: 100;
-  line-height: 75px;
+  line-height: 4.688rem;
   text-align: center;
   vertical-align: middle;
   letter-spacing: 15%;
   color: #333;
   margin: 0;
   padding: 0;
-  /* Adicione essa regra de estilo */
   margin-right: 0;
 }
 
-/* Adicione essas regras de estilo */
 html, body {
   height: 100%;
 }
 
 header, footer {
   background-color: #F7A072;
-  height: 132px;
+  height: 8.25rem;
 }
 
-footer{
+footer {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
+  height: 8.25rem;
 }
 
 main {
-  min-height: calc(100% - 264px);
+  box-sizing: border-box;
+  padding-bottom: 8.25rem; /* altura do footer */
 }
 
 form {
   background-color: #f2f2f2;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 500px;
-  text-align: center; /* Adicione esta linha */
+  border-radius: 0.313rem;
+  padding: 1.25rem;
+  margin: 1.25rem auto;
+  max-width: 31.25rem;
+  text-align: center;
 }
 
 h1 {
   background-color: #f2f2f2;
   font-family: 'Ubuntu Condensed', sans-serif;
-  font-size: 65px;
+  font-size: 4.063rem;
   font-weight: 100;
-  line-height: 75px;
+  line-height: 4.688rem;
   text-align: center;
   vertical-align: middle;
   letter-spacing: 25%;
@@ -63,33 +64,33 @@ h1 {
 
 label {
   text-align: center;
-  font-family: Ubuntu Condensed, sans-serif;
-  font-size: 25px;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1.563rem;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0.313rem;
   color: #666;
 }
 
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
+  padding: 0.625rem;
+  margin-bottom: 0.938rem;
   border: none;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   font-size: 16px;
 }
 
 button[type="submit"],
 button[type="button"] {
-  font-family: Ubuntu Condensed, sans-serif;
+  font-family: 'Ubuntu Condensed', sans-serif;
   display: inline-block;
   width: 45%;
-  padding: 10px;
+  padding: 0.625rem;
   border: none;
-  border-radius: 20px;
-  font-size: 25px;
+  border-radius: 1.25rem;
+  font-size: 1.563;
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -107,4 +108,58 @@ button[type="button"] {
 button[type="submit"]:hover,
 button[type="button"]:hover {
   text-decoration: underline;
+}
+
+/* Estilos para telas menores do que 600px */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: 10%;
+  }
+  
+  label {
+    font-size: 20px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    font-size: 14px;
+  }
+  
+  button[type="submit"],
+  button[type="button"] {
+    width: 100%;
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 601px) {
+  h1 {
+    font-size: 65px;
+    line-height: 75px;
+    letter-spacing: 25%;
+  }
+  
+  label {
+    font-size: 25px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    font-size: 16px;
+  }
+  
+  button[type="submit"],
+  button[type="button"] {
+    width: 45%;
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  button[type="submit"],
+  button[type="button"] {
+    width: 100%;
+  }
 }
