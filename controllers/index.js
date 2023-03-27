@@ -193,15 +193,15 @@ const priorityQueue = new PriorityQueue();
 // Adiciona um elemento na fila prioritária
 app.post('/priorityQueue/enqueue', (req, res) => {
   const name = req.query.name;
-  const doenca = req.query.doenca;
-  if (doenca != 'morrendo') {
+  const desease = req.query.desease;
+  if (desease != 'morrendo') {
     res.status(800).send('você deve entrar na fila normal, pois não atende aos requisitos de prioridade.')
   }
   if (!name) {
     res.status(400).send('O parâmetros "name" obrigatórios.');
   } else {
     priorityQueue.enqueue({ name });
-    res.send(`Elemento com nome ${name} adicionado à fila prioritária.`);
+    res.send(`${name} adicionado à fila prioritária.`);
   }
 });
 
