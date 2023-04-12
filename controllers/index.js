@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const users = [];
 
 // Rota de cadastro de usuário
-app.post('/cadastro', (req, res) => {
+app.post('/cadastro/v1', (req, res) => {
 
   const { email, password, fullName, phone, cep, adress, adressNumber, adressComplement, sex, birthDate, cpf, civilState } = req.body;
 
@@ -39,7 +39,7 @@ app.post('/cadastro', (req, res) => {
 });
 
 // Rota de login de usuário
-app.post('/login', (req, res) => {
+app.post('/login/v1', (req, res) => {
   const { email, password } = req.body;
 
   // Verifica se o email e a senha são válidos
@@ -57,7 +57,7 @@ app.post('/login', (req, res) => {
 });
 
 //Rota para ver informações do usuário
-app.post('/usuario/infos', (req, res) => {
+app.post('/usuario/infos/v1', (req, res) => {
   const { email } = req.body;
 
   // Verifica se o email e a senha são válidos
@@ -72,7 +72,7 @@ app.post('/usuario/infos', (req, res) => {
 });
 
 //rota para editar informações do usuário
-app.post('/usuario/infos/edit', (req, res) => {
+app.post('/usuario/infos/edit/v1', (req, res) => {
   const{ email, name, phone, cep, adress, number, complement, civilState} = req.body;
 
   const user = users.find(user => user.email === email);
@@ -105,7 +105,7 @@ app.post('/usuario/infos/edit', (req, res) => {
 })
 
 // Rota protegida
-app.get('/protegido', (req, res) => {
+app.get('/protegido/v1', (req, res) => {
   // Obtém o token JWT enviado pelo cliente
   const authHeader = req.headers.authorization;
   if (!authHeader) {
@@ -128,7 +128,7 @@ app.get('/protegido', (req, res) => {
 const queue = new Queue();
 
 // Adiciona um elemento na fila
-app.post('/queue/enqueue', (req, res) => {
+app.post('/queue/enqueue/v1', (req, res) => {
   const name = req.query.name;
 
   if (!name) {
@@ -141,7 +141,7 @@ app.post('/queue/enqueue', (req, res) => {
 
 
 // Remove um elemento da fila
-app.delete('/queue/dequeue', (req, res) => {
+app.delete('/queue/dequeue/v1', (req, res) => {
   const name = req.query.name;
   if (queue.isEmpty()) {
     res.status(400).send('A fila está vazia.');
@@ -153,14 +153,14 @@ app.delete('/queue/dequeue', (req, res) => {
 });
 
 // Retorna o tamanho da fila
-app.get('/queue/size', (req, res) => {
+app.get('/queue/size/v1', (req, res) => {
   const size = queue.size();
 
   res.send(`Tamanho da fila: ${size}`);
 });
 
 // Retorna a posição de um elemento na fila
-app.get('/queue/position', (req, res) => {
+app.get('/queue/position/v1', (req, res) => {
   const elementName = req.query.name;
 
   if (!elementName) {
@@ -182,7 +182,7 @@ app.get('/queue/position', (req, res) => {
 
 
 // Retorna todos os elementos na fila
-app.get('/queue/elements', (req, res) => {
+app.get('/queue/elements/v1', (req, res) => {
   const elements = queue.toArray();
 
   res.send(`Elementos na fila: ${elements.map(e => `${e.name}`).join(', ')}`);
@@ -191,7 +191,7 @@ app.get('/queue/elements', (req, res) => {
 const priorityQueue = new PriorityQueue();
 
 // Adiciona um elemento na fila prioritária
-app.post('/priorityQueue/enqueue', (req, res) => {
+app.post('/priorityQueue/enqueue/v1', (req, res) => {
   const name = req.query.name;
   const desease = req.query.desease;
   if (desease != 'morrendo') {
@@ -207,7 +207,7 @@ app.post('/priorityQueue/enqueue', (req, res) => {
 
 
 // Remove um elemento da fila prioritária
-app.delete('/priorityQueue/dequeue', (req, res) => {
+app.delete('/priorityQueue/dequeue/v1', (req, res) => {
   const name = req.query.name;
   if (priorityQueue.isEmpty()) {
     res.status(400).send('A fila está vazia.');
@@ -219,14 +219,14 @@ app.delete('/priorityQueue/dequeue', (req, res) => {
 });
 
 // Retorna o tamanho da fila prioritária
-app.get('/priorityQueue/size', (req, res) => {
+app.get('/priorityQueue/size/v1', (req, res) => {
   const size = priorityQueue.size();
 
   res.send(`Tamanho da fila prioritária: ${size}`);
 });
 
 // Retorna a posição de um elemento na fila prioritária
-app.get('/priorityQueue/position', (req, res) => {
+app.get('/priorityQueue/position/v1', (req, res) => {
   const elementName = req.query.name;
 
   if (!elementName) {
@@ -247,14 +247,14 @@ app.get('/priorityQueue/position', (req, res) => {
 });
 
 // Retorna todos os elementos na fila prioritária
-app.get('/priorityQueue/elements', (req, res) => {
+app.get('/priorityQueue/elements/v1', (req, res) => {
   const elements = priorityQueue.toArray();
 
   res.send(`Elementos na fila prioritária: ${elements.map(e => `${e.name}`).join(', ')}`);
 });
 
 //Retorna as receitas de um usuário
-app.get('/getPrescription', (req,res) =>{
+app.get('/getPrescription/v1', (req,res) =>{
   const { email } = req.body;
   // Verifica se o email e a senha são válidos
   const user = users.find(user => user.email === email);
@@ -266,7 +266,7 @@ app.get('/getPrescription', (req,res) =>{
 
   });
 
-app.post('/sendPrescription', (req,res) =>{
+app.post('/sendPrescription/v1', (req,res) =>{
   const { email , prescription } = req.body;
   
   // Verifica se o email e a senha são válidos
