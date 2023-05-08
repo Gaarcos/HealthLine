@@ -62,6 +62,7 @@ label {
 }
 
 input[type="text"],
+input[type="login"],
 input[type="email"],
 input[type="tel"],
 input[type="password"] {
@@ -75,7 +76,7 @@ input[type="password"] {
 }
 
 button[type="submit"],
-button[type="button"] {
+button[type="alternative"] {
   font-family: 'Ubuntu Condensed', sans-serif;
   display: inline-block;
   width: 45%;
@@ -92,13 +93,13 @@ button[type="submit"] {
   color: white;
 }
 
-button[type="button"] {
+button[type="alternative"] {
   background-color: #B73939;
   color: white;
 }
 
 button[type="submit"]:hover,
-button[type="button"]:hover {
+button[type="alternative"]:hover {
   text-decoration: underline;
 }
 
@@ -120,7 +121,7 @@ button[type="button"]:hover {
   }
 
   button[type="submit"],
-  button[type="button"] {
+  button[type="alternative"] {
     width: 100%;
     font-size: 20px;
   }
@@ -143,7 +144,7 @@ button[type="button"]:hover {
   }
 
   button[type="submit"],
-  button[type="button"] {
+  button[type="alternative"] {
     width: 45%;
     font-size: 25px;
   }
@@ -152,7 +153,7 @@ button[type="button"]:hover {
 @media (max-width: 768px) {
 
   button[type="submit"],
-  button[type="button"] {
+  button[type="alternative"] {
     width: 100%;
   }
 }

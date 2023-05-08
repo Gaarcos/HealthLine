@@ -1,12 +1,6 @@
-// temporario para logar
-let validUsers = [{
-    username: 'joao@example.com',
-    password: '123'
-}];
-
 function voltarLogin() {
 
-    window.location.href = 'login.html'
+    window.location.href = '/login'
 }
 
 // função para validação de senha e envio de formulário de cadastro
@@ -24,21 +18,6 @@ $(document).ready(function () {
         }
     });
 });
-
-
-function validateUser() {
-    let login = document.getElementById("login").value;
-    let password = document.getElementById("senha").value;
-
-    for (let i = 0; i < validUsers.length; i++) {
-        if (login === validUsers[i].username && password === validUsers[i].password) {
-            window.location.href = 'home.html';
-            return false;
-        }
-    }
-    alert("Usuário ou senha inválidos, tente novamente.");
-    return false;
-}
 
 
 // função para exibir/ocultar o menu lateral na página home.html
@@ -318,17 +297,9 @@ function saveUserData() {
 function logoff() {
 
     // Redireciona para a tela de login
-    window.location.href = "login.html";
+    window.location.href = "/login";
 }
 
-function login(login, senha) {
-    var fixedUser = {
-        login: "joao@example.com",
-        senha: "1234"
-    };
-
-    return login === fixedUser.login && senha === fixedUser.senha;
-}
 
 function onLoginFormSubmit(event) {
     event.preventDefault();
@@ -336,13 +307,17 @@ function onLoginFormSubmit(event) {
     var login = document.getElementById("login").value;
     var senha = document.getElementById("senha").value;
 
-    if (logar(login, senha)) {
-        window.location.href = "home.html";
+    if (login(login, senha)) {
+        window.location.href = '/home'
     } else {
         alert("Credenciais de login incorretas. Tente novamente.");
     }
 }
 
+document.getElementById("entrar").addEventListener("click", function (event) {
+    event.preventDefault();
+    validateUser();
+});
 document.getElementById("logoff").addEventListener("click", logoff);
 document.getElementById("user").addEventListener("click", user);
 document.getElementById("view-recipes").addEventListener("click", viewRecipes);
@@ -354,4 +329,27 @@ document.getElementById("user").addEventListener("click", user);
 function closeSidebar() {
     var menuLateral = document.getElementById("menu-lateral");
     menuLateral.style.display = "none";
+}
+
+function validateUser() {
+    let login = document.getElementById("login").value;
+    let password = document.getElementById("senha").value;
+
+    // Chame a função 'login' com os valores de login e senha
+    if (login(login, password)) {
+        window.location.href = '/home'
+        return false;
+    }
+
+    alert("Usuário ou senha inválidos, tente novamente.");
+    return false;
+}
+
+function login(login, senha) {
+    var fixedUser = {
+        login: "joao@example.com",
+        senha: "123"
+    };
+
+    return login === fixedUser.login && senha === fixedUser.senha;
 }

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const Queue = require('./queue');
 const PriorityQueue = require('./priorityQueue');
-
+const path = require('path');
 const app = express();
 const secretKey = 'minha-chave-secreta';
 
@@ -371,6 +371,28 @@ app.post('/sendPrescription/v1', (req, res) => {
   // Retorna uma mensagem de sucesso
   res.send(`Prescrição adicionada com sucesso: ${user.prescriptions}`);
 })
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.use(express.static(path.join(__dirname, 'controllers')));
+
+app.get('/style.css', (req, res) => {
+  res.type('text/css');
+  res.sendFile(path.join(__dirname, '../views/style.css'));
+});
+
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/home.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/login.html'));
+});
+
+app.get('/cadastro', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/cadastro.html'));
+});
+
 // Inicia o servidor na porta 3000
 app.listen(3000, () => {
   console.log('Servidor iniciado na porta 3000');
