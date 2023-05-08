@@ -38,7 +38,8 @@ app.post('/cadastro/v1', (req, res) => {
   res.json({ message: 'Usuário cadastrado com sucesso' });
 });
 
-// Rota de login de usuário
+// Rota de login de usuário sem token
+
 app.post('/login/v1', (req, res) => {
   const { email, password } = req.body;
 
@@ -49,11 +50,44 @@ app.post('/login/v1', (req, res) => {
   }
   return res.send('login feito!')
 
+});
+
+// Rota de login de usuário com retorno de token
+app.post('/login/v2', (req, res) => {
+  const { email, password } = req.body;
+
+  // Verifica se o email e a senha são válidos
+  const user = users.find(user => user.email === email && user.password === password);
+  if (!user) {
+    return res.status(401).json({ message: 'Email ou senha inválidos' });
+  }
+
   // Gera um token JWT com a chave secreta
-  // const token = jwt.sign({ email }, secretKey);
+  const token = jwt.sign({ email }, secretKey);
 
   // Retorna o token
-  // res.json({ token });
+  res.json({ token });
+});
+
+// Rota protegida
+app.get('/protegido/v1', (req, res) => {
+  // Obtém o token JWT enviado pelo cliente
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).json({ message: 'Token não fornecido' });
+  }
+
+  const token = authHeader.split(' ')[1];
+
+  // Verifica se o token é válido
+  try {
+    const decoded = jwt.verify(token, secretKey);
+    // Retorna uma mensagem de sucesso se o token é válido
+    res.json({ message: `Bem-vindo, ${decoded.email}!` });
+  } catch (err) {
+    // Retorna um erro de autenticação se o token for inválido
+    res.status(401).json({ message: 'Token inválido' });
+  }
 });
 
 //Rota para ver informações do usuário
@@ -103,27 +137,6 @@ app.post('/usuario/infos/edit/v1', (req, res) => {
 
   res.send('Alterações feitas!')
 })
-
-// Rota protegida
-app.get('/protegido/v1', (req, res) => {
-  // Obtém o token JWT enviado pelo cliente
-  const authHeader = req.headers.authorization;
-  if (!authHeader) {
-    return res.status(401).json({ message: 'Token não fornecido' });
-  }
-
-  const token = authHeader.split(' ')[1];
-
-  // Verifica se o token é válido
-  try {
-    const decoded = jwt.verify(token, secretKey);
-    // Retorna uma mensagem de sucesso se o token é válido
-    res.json({ message: `Bem-vindo, ${decoded.email}!` });
-  } catch (err) {
-    // Retorna um erro de autenticação se o token for inválido
-    res.status(401).json({ message: 'Token inválido' });
-  }
-});
 
 const queue = new Queue();
 
