@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<<<<<<< Updated upstream
   <head>
     <meta charset="UTF-8" />
     <title>Cadastro</title>
@@ -30,6 +31,45 @@
         <label for="endereco">Endereço:</label>
         <input type="text" name="endereco" required />
         <small>Formato: Rua, Bairro, Cidade, Estado</small>
+=======
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+  <script src="../controllers/scripts.js"></script>
+
+</head>
+
+<body>
+  <div class="header">
+     <h2></h2>
+     <h2>Cadastro</h2>
+     <h2></h2>
+  </div>
+  <div class="cadastro-container">
+    <form id="cadastroForm" action="/cadastro" method="POST">
+      <div class="container" style="display:flex; flex-wrap: wrap;" id="cadastro2">
+        <label for="nome">Nome Completo</label>
+        <input id="cadastro2" type="text" name="nome" required>
+      </div>
+      <div class="container" id="cadastro2">
+        <label for="email">Email</label>
+        <input type="email" name="email" required>
+      </div>
+      <div class="container" id="cadastro2">
+        <label for="telefone">Telefone</label>
+        <input type="tel" name="telefone" required>
+      </div>
+      <div class="container" id="cadastro2">
+        <label for="cep">CEP</label>
+        <input type="text" name="cep" required>
+      </div>
+      <div class="container" id="cadastro2">
+        <label for="endereco">Endereço</label>
+        <input type="text" name="endereco" required>
+>>>>>>> Stashed changes
       </div>
       <div>
         <label for="numero">Número:</label>
