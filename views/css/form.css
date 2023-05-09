@@ -1,0 +1,123 @@
+
+.user-form {
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 5rem;
+  background-color:  #6fe3e31f;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Ubuntu Condensed';
+  letter-spacing: 10%;
+}
+  
+.user-form label {
+  display: inline-block;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  font-weight: bold;
+  text-align: left;
+  width: 20%;
+  font-family: 'Ubuntu Condensed';
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 29px;
+  letter-spacing: 0.15em;
+  color: #000000;
+}
+.login-label{
+  display: block;
+  margin-bottom: 1rem;
+  margin: 0 auto;
+  margin-left: 2rem;
+  font-weight: bold;
+  font-family: 'Ubuntu Condensed';
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 29px;
+  letter-spacing: 0.15em;
+  color: #000000;
+}
+  
+.user-form input[type="text"],
+.user-form input[type="email"],
+.user-form input[type="tel"],
+.user-form textarea {
+  display: inline-block;
+  width: 70%;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #F7A072;
+  background-color: transparent;  
+}
+.user-form input[type="cpf"],
+.user-form input[type="login"]{
+  display: inline-block;
+  align-items: center;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #F7A072;
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+}
+.user-form input[type="password"] {
+  display: inline-block;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #F7A072;
+  background-color: transparent;
+} 
+input[type="date"] {
+  height: 20px;
+  padding: 0.625rem;
+  margin-bottom: 0.938rem;
+  border: none;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  align-items: center;
+}
+select {
+  height: 38px;
+  padding: 0.625rem;
+  margin-bottom: 0.938rem;
+  border: none;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: .9rem;
+  align-items: right;
+  background-color: #D9D9D9;
+  width: calc(20% - .5rem);
+}
+.user-form button {
+  background-color: #0FA3B1;
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 20px;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Ubuntu Condensed';
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 29px;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.user-form button:hover {
+  background-color: #0C8599;
+}
+
+.user-form button:active {
+  background-color: #fff;
+  color: #0FA3B1;
+} 
+  

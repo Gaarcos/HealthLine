@@ -1,8 +1,14 @@
-.hamburger {
-    cursor: pointer;
-    margin-left: 5%;
+  .hamburger {
+  cursor: pointer;
+  margin-left: 5%;
   }
-  
+  .hamburger img {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .hamburger.rotate img {
+      transform: rotate(180deg);
+  }
   .menu-lateral {
     position: fixed;
     top: 4rem; /* altura da header */
@@ -19,23 +25,22 @@
     list-style: none; /* Remove o ponto de lista */
     padding: 0;
   }
+  
   .menu-lateral ul li {
     margin-bottom: 10px;
-    background-color: #fff;
+    padding: 0;
+    background-color: transparent;
   }
   
   .menu-lateral ul li.selected {
-    background-color: #ff0000;
+    background-color: #ff000051;
   }
   
   .menu-lateral ul li a {
     font-family: 'Ubuntu Condensed';
     font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 34px;
+    font-size: 1.3rem;
     display: flex;
-    align-items: center;
     text-align: center;
     letter-spacing: 0.15em;
     color: #007BFF;

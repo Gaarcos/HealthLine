@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Cadastro</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
   <script src="../controllers/scripts.js"></script>
 
@@ -16,7 +16,6 @@
      <h2>Cadastro</h2>
      <h2></h2>
   </div>
-  <h1>Cadastro</h1>
     <form class="user-form" id="cadastroForm" action="/cadastro" method="POST">
       <div>
         <label for="nome">Nome Completo</label>
@@ -67,7 +66,7 @@
         <label for="dataNascimento">Data de Nascimento:</label>
         <input type="date" name="dataNascimento" required />
         <label for="cpf">CPF:</label>
-        <input type="text" name="cpf" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" required />
+        <input type="cpf" name="cpf" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" required />
       </div>
       <div>
         <label for="senha">Senha:</label>

@@ -25,6 +25,12 @@ $(document).ready(function () {
     });
 });
 
+const hamburger = document.querySelector('.hamburger');
+
+hamburger.addEventListener('click', function() {
+    this.classList.toggle('rotate');
+});
+
 
 function validateUser() {
     let login = document.getElementById("login").value;
@@ -129,7 +135,7 @@ function symptoms() {
 
     symptomsList.forEach(function (symptom, index) {
         var item = `
-                <ul class="symptoms-form">
+                <ul class="symptoms-ul">
                     <li>
                     <input type="checkbox" id="symptom-${index}" name="symptom" value="${symptom}">
                     <label for="symptom-${index}">${symptom}</label>

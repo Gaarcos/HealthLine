@@ -22,6 +22,9 @@
     text-align: center;
     letter-spacing: 0.15em;
     color: #FFFFFF;
+    position: absolute;
+    top: calc(50% - 59px);
+    right: 44%;
 }
 .header button {
     font-family: 'Ubuntu Condensed', sans-serif;
