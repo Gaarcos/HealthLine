@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>HealthLine</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <header></header>
+
+<head>
+  <meta charset="UTF-8">
+  <title>HealthLine</title>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+  <script src="../controllers/scripts.js"></script>
+  <script>
+    src = "../controllers/index.js"
+  </script>
+</head>
+
+<body>
+  <div class="header"></div>
+
+  <div class="login-container">
     <h1>HealthLine</h1>
-    <form>
+    <form id="login-form" onsubmit="return validateUser()">
       <label for="login">LOGIN</label>
-      <input type="text" id="login" name="login" required><br><br>
+      <input type="login" id="login" name="login" required><br><br>
       <label for="senha">SENHA</label>
       <input type="password" id="senha" name="senha" required><br><br>
-      <button id = "entrar"type="submit" name="entrar">ENTRAR</button>
-      <button id = "criar" type="button" name="criar">CRIAR</button>
+      <button id="entrar" type="submit" name="entrar">ENTRAR</button>
+      <button id="criar" type="alternative" name="criar" onclick="window.location.href='cadastro'">CRIAR</button>
     </form>
-    <footer></footer>
-  </body>
+  </div>
+  <div class="footer">2023</div>
+</body>
+
 </html>

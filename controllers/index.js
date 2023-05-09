@@ -3,13 +3,15 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const Queue = require('./queue');
 const PriorityQueue = require('./priorityQueue');
-
+const path = require('path');
 const app = express();
 const secretKey = 'minha-chave-secreta';
 
 // Middleware para interpretar o corpo da requisição como um objeto JSON
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 // Simula um banco de dados de usuários
 const users = [];
@@ -17,36 +19,75 @@ const users = [];
 // Rota de cadastro de usuário
 app.post('/cadastro/v1', (req, res) => {
 
-  const { email, password, fullName, phone, cep, adress, adressNumber, adressComplement, sex, birthDate, cpf, civilState } = req.body;
+  const {
+    email,
+    password,
+    fullName,
+    phone,
+    cep,
+    adress,
+    adressNumber,
+    adressComplement,
+    sex,
+    birthDate,
+    cpf,
+    civilState
+  } = req.body;
 
   // Verifica se o email já está em uso
   if (users.find(user => user.email === email)) {
-    return res.status(422).json({ message: 'Email já cadastrado' });
+    return res.status(422).json({
+      message: 'Email já cadastrado'
+    });
   }
   if (users.find(user => user.cpf === cpf)) {
-    return res.status(422).json({ message: 'CPF já cadastrado' });
+    return res.status(422).json({
+      message: 'CPF já cadastrado'
+    });
   }
   if (users.find(user => user.phone === phone)) {
-    return res.status(422).json({ message: 'Telefone já cadastrado' });
+    return res.status(422).json({
+      message: 'Telefone já cadastrado'
+    });
   }
 
   // Cria um novo usuário e o adiciona no banco de dados
-  const newUser = { email, password, fullName, phone, cep, adress, adressNumber, adressComplement, sex, birthDate, cpf, civilState };
+  const newUser = {
+    email,
+    password,
+    fullName,
+    phone,
+    cep,
+    adress,
+    adressNumber,
+    adressComplement,
+    sex,
+    birthDate,
+    cpf,
+    civilState
+  };
   users.push(newUser);
 
   // Retorna uma mensagem de sucesso
-  res.json({ message: 'Usuário cadastrado com sucesso' });
+  res.json({
+    message: 'Usuário cadastrado com sucesso'
+  });
 });
 
 // Rota de login de usuário sem token
 
 app.post('/login/v1', (req, res) => {
-  const { email, password } = req.body;
+  const {
+    email,
+    password
+  } = req.body;
 
   // Verifica se o email e a senha são válidos
   const user = users.find(user => user.email === email && user.password === password);
   if (!user) {
-    return res.status(401).json({ message: 'Email ou senha inválidos' });
+    return res.status(401).json({
+      message: 'Email ou senha inválidos'
+    });
   }
   return res.send('login feito!')
 
@@ -92,51 +133,114 @@ app.get('/protegido/v1', (req, res) => {
 
 //Rota para ver informações do usuário
 app.post('/usuario/infos/v1', (req, res) => {
-  const { email } = req.body;
+  const {
+    email
+  } = req.body;
 
   // Verifica se o email e a senha são válidos
   const user = users.find(user => user.email === email);
   if (!user) {
-    return res.status(401).json({ message: 'Email inválido' });
+    return res.status(401).json({
+      message: 'Email inválido'
+    });
   }
-  if(user.complement != null){
-    res.json({ nome: user.fullname, email: user.email, telefone: user.phone, CEP: user.cep, endereço: user.adress, número: user.adressNumber, nascimento: user.birthDate, estadoCivil: user.civilState });
+  if (user.complement != null) {
+    res.json({
+      nome: user.fullname,
+      email: user.email,
+      telefone: user.phone,
+      CEP: user.cep,
+      endereço: user.adress,
+      número: user.adressNumber,
+      nascimento: user.birthDate,
+      estadoCivil: user.civilState
+    });
   }
-  res.json({ nome: user.fullname, email: user.email, telefone: user.phone, CEP: user.cep, endereço: user.adress, número: user.adressNumber, complemento: user.adressComplement, nascimento: user.birthDate, estadoCivil: user.civilState });
+  res.json({
+    nome: user.fullname,
+    email: user.email,
+    telefone: user.phone,
+    CEP: user.cep,
+    endereço: user.adress,
+    número: user.adressNumber,
+    complemento: user.adressComplement,
+    nascimento: user.birthDate,
+    estadoCivil: user.civilState
+  });
 });
 
 //rota para editar informações do usuário
 app.post('/usuario/infos/edit/v1', (req, res) => {
-  const{ email, name, phone, cep, adress, number, complement, civilState} = req.body;
+  const {
+    email,
+    name,
+    phone,
+    cep,
+    adress,
+    number,
+    complement,
+    civilState
+  } = req.body;
 
   const user = users.find(user => user.email === email);
   if (!user) {
-    return res.status(401).json({ message: 'Email inválido' });
+    return res.status(401).json({
+      message: 'Email inválido'
+    });
   }
-  if(user.fullName !=null){
+  if (user.fullName != null) {
     user.fullname = name;
   }
-  if(user.phone !=null){
+  if (user.phone != null) {
     user.phone = phone;
   }
-  if(user.cep !=null){
+  if (user.cep != null) {
     user.cep = cep;
   }
-  if(user.adress !=null){
+  if (user.adress != null) {
     user.adress = adress;
   }
-  if(user.number !=null){
+  if (user.number != null) {
     user.number = number;
   }
-  if(user.complement !=null){
+  if (user.complement != null) {
     user.complement = complement;
   }
-  if(user.civilState !=null){
+  if (user.civilState != null) {
     user.civilState = civilState;
   }
 
   res.send('Alterações feitas!')
 })
+
+
+// Rota protegida
+app.get('/protegido/v1', (req, res) => {
+  // Obtém o token JWT enviado pelo cliente
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).json({
+      message: 'Token não fornecido'
+    });
+  }
+
+  const token = authHeader.split(' ')[1];
+
+  // Verifica se o token é válido
+  try {
+    const decoded = jwt.verify(token, secretKey);
+    // Retorna uma mensagem de sucesso se o token é válido
+    res.json({
+      message: `Bem-vindo, ${decoded.email}!`
+    });
+  } catch (err) {
+    // Retorna um erro de autenticação se o token for inválido
+    res.status(401).json({
+      message: 'Token inválido'
+    });
+  }
+});
+
 
 const queue = new Queue();
 
@@ -147,7 +251,9 @@ app.post('/queue/enqueue/v1', (req, res) => {
   if (!name) {
     res.status(400).send('O parâmetros "name" obrigatórios.');
   } else {
-    queue.enqueue({ name });
+    queue.enqueue({
+      name
+    });
     res.send(`Elemento com nome ${name} adicionado à fila.`);
   }
 });
@@ -183,11 +289,9 @@ app.get('/queue/position/v1', (req, res) => {
 
     if (position === -1) {
       res.send(`O elemento ${elementName} não está na fila.`);
-    }
-    else if (position === 0) {
+    } else if (position === 0) {
       res.send(`O elemento ${elementName} é o proximo a ser chamado`);
-    }
-    else {
+    } else {
       res.send(`O elemento ${elementName} está na posição ${position + 1} da fila.`);
     }
   }
@@ -213,7 +317,9 @@ app.post('/priorityQueue/enqueue/v1', (req, res) => {
   if (!name) {
     res.status(400).send('O parâmetros "name" obrigatórios.');
   } else {
-    priorityQueue.enqueue({ name });
+    priorityQueue.enqueue({
+      name
+    });
     res.send(`${name} adicionado à fila prioritária.`);
   }
 });
@@ -249,11 +355,9 @@ app.get('/priorityQueue/position/v1', (req, res) => {
 
     if (position === -1) {
       res.send(`O elemento ${elementName} não está na fila prioritária.`);
-    }
-    else if (position === 0) {
+    } else if (position === 0) {
       res.send(`O elemento ${elementName} é o proximo a ser chamado na fila prioritária`);
-    }
-    else {
+    } else {
       res.send(`O elemento ${elementName} está na posição ${position + 1} da fila prioritária.`);
     }
   }
@@ -267,31 +371,64 @@ app.get('/priorityQueue/elements/v1', (req, res) => {
 });
 
 //Retorna as receitas de um usuário
-app.get('/getPrescription/v1', (req,res) =>{
-  const { email } = req.body;
+app.get('/getPrescription/v1', (req, res) => {
+  const {
+    email
+  } = req.body;
   // Verifica se o email e a senha são válidos
   const user = users.find(user => user.email === email);
   if (!user) {
-    return res.status(401).json({ message: 'Email inválido' });
+    return res.status(401).json({
+      message: 'Email inválido'
+    });
   }
 
-  res.json({ receita: user.prescriptions });
-
+  res.json({
+    receita: user.prescriptions
   });
 
-app.post('/sendPrescription/v1', (req,res) =>{
-  const { email , prescription } = req.body;
-  
+});
+
+app.post('/sendPrescription/v1', (req, res) => {
+  const {
+    email,
+    prescription
+  } = req.body;
+
   // Verifica se o email e a senha são válidos
   const user = users.find(user => user.email === email);
   if (!user) {
-    return res.status(401).json({ message: 'Email inválido' });
+    return res.status(401).json({
+      message: 'Email inválido'
+    });
   }
   user.prescriptions = prescription;
 
   // Retorna uma mensagem de sucesso
   res.send(`Prescrição adicionada com sucesso: ${user.prescriptions}`);
 })
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.use(express.static(path.join(__dirname, 'controllers')));
+
+app.get('/style.css', (req, res) => {
+  res.type('text/css');
+  res.sendFile(path.join(__dirname, '../views/style.css'));
+});
+
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/home.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/login.html'));
+});
+
+app.get('/cadastro', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/cadastro.html'));
+});
+
 // Inicia o servidor na porta 3000
 app.listen(3000, () => {
   console.log('Servidor iniciado na porta 3000');
