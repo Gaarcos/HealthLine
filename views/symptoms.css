@@ -1,0 +1,91 @@
+.symptoms-form{
+    padding-top: 8rem;
+    padding-bottom: 12rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    padding: .5rem;
+    display: inline-block;
+}
+.symptoms-form h3{
+    font-family: 'Ubuntu Condensed';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    letter-spacing: 0.15em;
+    color: #0FA3B1;
+}
+.symptoms-form li{
+    display: inline-block;
+    margin: 0;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    vertical-align: top;
+    width: 50%;
+    max-width: 50%;
+    padding: 0;
+}
+.symptoms-form li label{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: 2px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 25px;
+    white-space: nowrap;
+    margin: 3px 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+.symptoms-form li label {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.symptoms-form li label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    padding: 2px 6px 2px 2px;
+    content: "\f067";
+    transition: transform .3s ease-in-out;
+}
+
+.symptoms-form li input[type="checkbox"]:checked + label::before {
+    content: "\f00c";
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+
+.symptoms-form li input[type="checkbox"]:checked + label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
+}
+
+.symptoms-form li input[type="checkbox"] {
+  display: absolute;
+}
+.symptoms-form li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+.symptoms-form li input[type="checkbox"]:focus + label {
+  border: 2px solid #e9a1ff;
+}

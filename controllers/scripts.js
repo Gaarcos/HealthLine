@@ -129,10 +129,12 @@ function symptoms() {
 
     symptomsList.forEach(function (symptom, index) {
         var item = `
-            <div>
-                <input type="checkbox" id="symptom-${index}" name="symptom" value="${symptom}">
-                <label for="symptom-${index}">${symptom}</label>
-            </div>
+                <ul class="symptoms-form">
+                    <li>
+                    <input type="checkbox" id="symptom-${index}" name="symptom" value="${symptom}">
+                    <label for="symptom-${index}">${symptom}</label>
+                    </li>
+                </ul>
         `;
         symptomsForm.innerHTML += item;
     });
@@ -142,11 +144,26 @@ function symptoms() {
 function getSymptomsList() {
     // Substitua isso pelos dados dos sintomas obtidos do servidor
     return [
-        "Febre",
-        "Dor de cabeça",
-        "Tosse",
-        "Dor de garganta",
-        "Fadiga"
+        "Febre", 
+        "Tosse seca", 
+        "Fadiga", 
+        "Dificuldade para respirar", 
+        "Perda de paladar", 
+        "Perda do olfato", 
+        "Dor de garganta", 
+        "Dor de cabeça", 
+        "Dores musculares", 
+        "Diarreia", 
+        "Náusea", 
+        "Conjuntivite", 
+        "Erupções cutâneas", 
+        "Dor abdominal", 
+        "Confusão mental", 
+        "Insuficiência renal", 
+        "Alterações na pressão arterial", 
+        "Inchaço nas pernas", 
+        "Convulsões", 
+        "Paralisia facial"
     ];
 }
 

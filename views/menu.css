@@ -1,0 +1,51 @@
+.hamburger {
+    cursor: pointer;
+    margin-left: 5%;
+  }
+  
+  .menu-lateral {
+    position: fixed;
+    top: 4rem; /* altura da header */
+    bottom: 2rem; /* altura da footer */
+    width: 20%;
+    left: -8px;
+    background-color: rgba(117, 166, 170, 0.87);
+    border-radius: 10px;
+    padding: 20px;
+    overflow: auto;
+    z-index: 1000;
+  }
+  .menu-lateral ul {
+    list-style: none; /* Remove o ponto de lista */
+    padding: 0;
+  }
+  .menu-lateral ul li {
+    margin-bottom: 10px;
+    background-color: #fff;
+  }
+  
+  .menu-lateral ul li.selected {
+    background-color: #ff0000;
+  }
+  
+  .menu-lateral ul li a {
+    font-family: 'Ubuntu Condensed';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 34px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.15em;
+    color: #007BFF;
+    text-decoration: none;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .menu-lateral ul li a:hover {
+    color: #fff;
+    background-color: #FF6347;
+  }
