@@ -1,3 +1,3 @@
-class QueueController extends QueueController{
-    
+class PriorityQueueController extends QueueController{
+
 }
