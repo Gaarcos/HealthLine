@@ -1,0 +1,3 @@
+class QueueController extends QueueController{
+    
+}
