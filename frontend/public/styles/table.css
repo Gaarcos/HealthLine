@@ -1,0 +1,22 @@
+.table {
+    margin: 20px auto; /* centraliza a tabela horizontalmente e adiciona margem superior e inferior */
+    font-family: 'Ubuntu Condensed';
+    font-size: 2rem;
+    width: 70%;
+    border-collapse: collapse; /* remove a separação entre as células da tabela */
+  }
+  
+  .table tr:nth-child(even) { /* aplica estilo para as linhas pares */
+    background-color: #f2f2f2;
+  }
+  .table thead tr {
+    background-color: #F7A072;
+    color: white; /* opcional: define a cor do texto na primeira linha */
+  }
+  
+  .table th, .table td { /* aplica estilo para as células das tabelas */
+    padding: 8px; /* adiciona um espaçamento interno nas células */
+    text-align: center; /* centraliza o conteúdo */
+    border: 2px solid #F7A072;
+    letter-spacing: 0.15em; /* adiciona uma borda de 1px sólida em todas as células */
+  }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="../public/styles/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+  <script src="../controllers/scripts.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <h2></h2>
+    <h2>Login</h2>
+    <h2></h2>
+  </div>
+  <section class="area-login">
+    <div class="login">
+      <div>
+        <img src="../public/imagens/Logo.png">
+      </div>
+      <form id="login-form" onsubmit="return validateUser()">
+        <input type="login" id="login" name="login" placeholder="nome de usuario" autofocus required>
+        <input type="password" id="senha" name="senha" placeholder="senha" required>
+        <input id="entrar" type="submit" name="entrar">
+      </form>
+      <p> Ainda não tem uma conta? <a href="#">Criar conta</a></p>
+    </div>
+  </section>
+  <div class="footer">2023</div>
+</body>
+
+</html>

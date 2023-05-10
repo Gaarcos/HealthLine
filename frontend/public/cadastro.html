@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="../public/styles/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+  <script src="../controllers/scripts.js"></script>
+
+</head>
+
+<body>
+  <div class="header">
+    <h2></h2>
+    <h2>Cadastro</h2>
+    <h2></h2>
+  </div>
+  <form class="user-form" id="cadastroForm" action="/cadastro" method="POST">
+    <div>
+      <label for="nome">Nome Completo</label>
+      <input id="cadastro2" type="text" name="nome" required>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="email" name="email" required>
+    </div>
+    <div>
+      <label for="telefone">Telefone</label>
+      <input type="tel" name="telefone" required>
+    </div>
+    <div>
+      <label for="cep">CEP</label>
+      <input type="text" name="cep" required>
+    </div>
+    <div>
+      <label for="endereco">Endereço</label>
+      <input type="text" name="endereco" required>
+    </div>
+    <div>
+      <label for="numero">Número:</label>
+      <input type="text" name="numero" required />
+    </div>
+    <div>
+      <label for="complemento">Complemento:</label>
+      <input type="text" name="complemento" />
+    </div>
+    <div>
+      <label for="genero">Gênero:</label>
+      <select name="genero" required>
+        <option value="">Selecione</option>
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+        <option value="outros">Outros</option>
+      </select>
+      <label for="estadoCivil">Estado Civil:</label>
+      <select name="estadoCivil" required>
+        <option value="">Selecione</option>
+        <option value="solteiro">Solteiro(a)</option>
+        <option value="casado">Casado(a)</option>
+        <option value="divorciado">Divorciado(a)</option>
+        <option value="viuvo">Viúvo(a)</option>
+      </select>
+    </div>
+    <div>
+      <label for="dataNascimento">Data de Nascimento:</label>
+      <input type="date" name="dataNascimento" required />
+      <label for="cpf">CPF:</label>
+      <input type="cpf" name="cpf" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" required />
+    </div>
+    <div>
+      <label for="senha">Senha:</label>
+      <input type="password" name="senha" required />
+      <label for="confirmarSenha">Confirmar Senha:</label>
+      <input type="password" name="confirmarSenha" required />
+    </div>
+    <button type="submit">Cadastrar</button>
+  </form>
+  <div class="footer">2023</div>
+</body>
+
+</html>
+<script>
+  const form = document.querySelector('#cadastro-form');
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  submitButton.addEventListener('click', (event) => {
+    event.preventDefault(); // evita que o formulário seja enviado pelo navegador
+
+    const formData = new FormData(form);
+    const json = JSON.stringify(Object.fromEntries(formData.entries()));
+    console.log(json); // exibe o JSON no console do navegador
+
+    // Envia o JSON para o servidor
+    fetch('/cadastro', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: json
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        alert('Cadastro realizado com sucesso!');
+        window.location.href = '/login'; // redireciona para a página de login
+      })
+      .catch(error => console.error(error));
+  });
+</script>

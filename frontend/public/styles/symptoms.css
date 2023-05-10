@@ -1,0 +1,71 @@
+.symptoms-form{
+    display: inline-block;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+ul {
+    margin: 0.5rem;
+    padding: 0;
+}
+.symptoms-ul{
+    display: inline-block;
+}
+
+ul.symptoms-ul li{
+    display: block;
+    width: 50%;
+}
+ul.symptoms-ul li label{
+    display: inline-block;
+    font-family: 'Ubuntu Condensed';
+    font-size: 1.5rem;
+    background-color: rgba(255, 255, 255, .9);
+    border: 2px solid rgba(139, 139, 139, .3);
+    color: #adadad;
+    border-radius: 25px;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+}
+
+ul.symptoms-ul li label {
+    padding: .6rem 0.6rem;
+    cursor: pointer;
+}
+
+ul.symptoms-ul li label::before {
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    content: "+";
+    transition: transform .3s ease-in-out;
+}
+
+ul.symptoms-ul li input[type="checkbox"]:checked + label::before {
+    content: "";
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+
+ul.symptoms-ul li input[type="checkbox"]:checked + label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
+}
+
+ul.symptoms-ul li input[type="checkbox"] {
+  display: inline-block;
+}
+ul.symptoms-ul li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+ul.symptoms-ul li input[type="checkbox"]:focus + label {
+  border: 2px solid #e9a1ff;
+}
