@@ -1,3 +1,1 @@
-class PriorityQueueController extends QueueController{
-
-}
+const priorityQueue = new PriorityQueue();
