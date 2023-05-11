@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Cadastro</title>
-  <link rel="stylesheet" href="../public/styles/style.css">
+  <link rel="stylesheet" href="styles/style.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
   <script src="..frontend/src/scripts/scripts.js"></script>
 
@@ -85,11 +85,11 @@
   const submitButton = form.querySelector('button[type="submit"]');
 
   submitButton.addEventListener('click', (event) => {
-    event.preventDefault(); // evita que o formulário seja enviado pelo navegador
+    event.preventDefault();
 
     const formData = new FormData(form);
     const json = JSON.stringify(Object.fromEntries(formData.entries()));
-    console.log(json); // exibe o JSON no console do navegador
+    console.log(json);
 
     // Envia o JSON para o servidor
     fetch('/cadastro', {

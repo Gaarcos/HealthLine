@@ -1,35 +1,34 @@
 const path = require('path');
-
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+const publicPath = path.join(__dirname, '../frontend/public');
 
+const imagesPath = path.join(__dirname, '../frontend/public/imagens');
 
-app.use(express.static(path.join(__dirname, '../backend/controllers')));
+const stylesPath = path.join(__dirname, '../frontend/public/styles');
+
+app.use(express.static(publicPath));
 
 app.get('/style.css', (req, res) => {
   res.type('text/css');
-  res.sendFile(path.join(__dirname, 'public/styles/style.css'));
+  res.sendFile(path.join(stylesPath, 'styles.css'));
+});
+
+app.use('/imagens', express.static(imagesPath));
+
+app.get('/cadastro', (req, res) => {
+  res.sendFile(path.join(publicPath, 'cadastro.html'));
 });
 
 app.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/home.html'));
+  res.sendFile(path.join(publicPath, 'home.html'));
 });
 
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/login.html'));
+  res.sendFile(path.join(publicPath, 'login.html'));
 });
 
-app.get('/cadastro', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/cadastro.html'));
-});
-
-// Inicia o servidor na porta 3000
-app.listen(3000, () => {
-  console.log('Servidor iniciado na porta 3000');
+app.listen(3001, () => {
+  console.log('Servidor iniciado na porta 3001');
 });
