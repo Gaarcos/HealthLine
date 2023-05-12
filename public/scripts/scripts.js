@@ -1,3 +1,9 @@
+// temporario para logar
+let validUsers = [{
+    username: 'joao@example.com',
+    password: '123'
+}];
+
 function voltarLogin() {
 
     window.location.href = '/login'
@@ -19,7 +25,11 @@ $(document).ready(function () {
         }
     });
 });
+const hamburger = document.querySelector('.hamburger');
 
+hamburger.addEventListener('click', function() {
+    this.classList.toggle('rotate');
+});
 
 // função para exibir/ocultar o menu lateral na página home.html
 function toggleMenu() {
@@ -53,10 +63,10 @@ $(document).ready(function () {
 
 function viewRecipes() {
     var mainContent = document.getElementsByClassName("main-content")[0];
-
+    
     mainContent.innerHTML = `
-        <h3>Receitas</h3>
-        <table id="recipes-table">
+        <h3 class="titulo-personalizado">Receitas</h3>
+        <table id="recipes-table" class="table">
             <thead>
                 <tr>
                     <th>Data</th>
@@ -88,15 +98,15 @@ function viewRecipes() {
 function getPatientRecipes() {
     // Substitua isso pelos dados das receitas do paciente logado
     return [{
-        date: "01/01/2023",
-        medication: "Paracetamol",
-        posology: "500mg, a cada 8 horas"
-    },
-    {
-        date: "15/01/2023",
-        medication: "Ibuprofeno",
-        posology: "400mg, a cada 6 horas"
-    }
+            date: "01/01/2023",
+            medication: "Paracetamol",
+            posology: "500mg, a cada 8 horas"
+        },
+        {
+            date: "15/01/2023",
+            medication: "Ibuprofeno",
+            posology: "400mg, a cada 6 horas"
+        }
     ];
 }
 
@@ -105,8 +115,8 @@ function symptoms() {
     var mainContent = document.getElementsByClassName("main-content")[0];
 
     mainContent.innerHTML = `
-        <h3>Sintomas</h3>
-        <form id="symptoms-form">
+        <h3 class="titulo-personalizado">Sintomas</h3>
+        <form id="symptoms-form" class="symptoms-form">
             <!-- Os sintomas serão adicionados aqui -->
         </form>
     `;
@@ -116,10 +126,12 @@ function symptoms() {
 
     symptomsList.forEach(function (symptom, index) {
         var item = `
-            <div>
-                <input type="checkbox" id="symptom-${index}" name="symptom" value="${symptom}">
-                <label for="symptom-${index}">${symptom}</label>
-            </div>
+                <ul class="symptoms-ul">
+                    <li>
+                    <input type="checkbox" id="symptom-${index}" name="symptom" value="${symptom}">
+                    <label for="symptom-${index}">${symptom}</label>
+                    </li>
+                </ul>
         `;
         symptomsForm.innerHTML += item;
     });
@@ -129,11 +141,26 @@ function symptoms() {
 function getSymptomsList() {
     // Substitua isso pelos dados dos sintomas obtidos do servidor
     return [
-        "Febre",
-        "Dor de cabeça",
-        "Tosse",
-        "Dor de garganta",
-        "Fadiga"
+        "Febre", 
+        "Tosse seca", 
+        "Fadiga", 
+        "Dificuldade para respirar", 
+        "Perda de paladar", 
+        "Perda do olfato", 
+        "Dor de garganta", 
+        "Dor de cabeça", 
+        "Dores musculares", 
+        "Diarreia", 
+        "Náusea", 
+        "Conjuntivite", 
+        "Erupções cutâneas", 
+        "Dor abdominal", 
+        "Confusão mental", 
+        "Insuficiência renal", 
+        "Alterações na pressão arterial", 
+        "Inchaço nas pernas", 
+        "Convulsões", 
+        "Paralisia facial"
     ];
 }
 
@@ -141,7 +168,7 @@ function chooseHospital() {
     var mainContent = document.getElementsByClassName("main-content")[0];
 
     mainContent.innerHTML = `
-        <h3>Escolher hospital</h3>
+        <h3 class="titulo-personalizado">Escolher hospital</h3>
         <div id="map"></div>
     `;
 
@@ -179,13 +206,12 @@ function initMap() {
     });
 }
 
-
 function viewQueue() {
     var mainContent = document.getElementsByClassName("main-content")[0];
 
     mainContent.innerHTML = `
-        <h3>Andamento da fila</h3>
-        <table id="fila-table">
+        <h3 class="titulo-personalizado">Andamento da fila</h3>
+        <table id="fila-table" class="table">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -236,7 +262,6 @@ function desistirFila() {
 }
 
 
-
 // função para exibir os dados do usuário
 function user() {
     var mainContent = document.getElementsByClassName("main-content")[0];
@@ -244,8 +269,8 @@ function user() {
     var userData = getUserData();
 
     mainContent.innerHTML = `
-        <h3>Dados do usuário</h3>
-        <form id="user-form">
+        <h3 class="titulo-personalizado">Dados do usuário</h3>
+        <form id="user-form" class="user-form">
             <label>Nome:</label>
             <input type="text" name="nome" value="${userData.nome}" disabled><br>
             <label>Data de nascimento:</label>
@@ -303,11 +328,9 @@ function saveUserData() {
 }
 
 function logoff() {
-
     // Redireciona para a tela de login
-    window.location.href = "/login";
+    window.location.href = "../views/login.html";
 }
-
 
 function onLoginFormSubmit(event) {
     event.preventDefault();
@@ -361,6 +384,14 @@ function login(login, senha) {
 
     return login === fixedUser.login && senha === fixedUser.senha;
 }
+
+document.getElementById("logoff").addEventListener("click", logoff);
+document.getElementById("user").addEventListener("click", user);
+document.getElementById("view-recipes").addEventListener("click", viewRecipes);
+document.getElementById("symptoms").addEventListener("click", symptoms);
+document.getElementById("choose-hospital").addEventListener("click", chooseHospital);
+document.getElementById("view-queue").addEventListener("click", viewQueue);
+document.getElementById("user").addEventListener("click", user);
 
 
 document.getElementById('cadastroForm').addEventListener('submit', function (e) {

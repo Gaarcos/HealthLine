@@ -25,7 +25,7 @@ app.use('/imagens', express.static(imagesPath));
 
 
 app.get('/scripts', (req, res) => {
-    res.sendFile(path.join(viewsPath, 'scripts.js'));
+    res.sendFile(path.join(scriptsPath, 'scripts.js'));
 });
 
 app.get('/style.css', (req, res) => {
