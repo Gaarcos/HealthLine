@@ -25,7 +25,7 @@ router.post("/register", async (req, res) => {
         cpf
     } = req.body;
     const {
-        phone
+        telefone
     } = req.body;
     if (await UserModel.findOne({
             email
@@ -44,7 +44,7 @@ router.post("/register", async (req, res) => {
         })
     }
     if (await UserModel.findOne({
-            phone
+            telefone
         })) {
         return res.status(400).json({
             error: true,
