@@ -25,7 +25,7 @@ router.post("/register", async (req, res) => {
         cpf
     } = req.body;
     const {
-        telefone
+        phone
     } = req.body;
     if (await UserModel.findOne({
             email
@@ -44,7 +44,7 @@ router.post("/register", async (req, res) => {
         })
     }
     if (await UserModel.findOne({
-            telefone
+            phone
         })) {
         return res.status(400).json({
             error: true,
@@ -64,15 +64,19 @@ router.post("/register", async (req, res) => {
 })
 
 router.post("/authenticate", async (req, res) => {
-
+    
     const {
         email,
         password
     } = req.body;
 
+    console.log(req.body);
+
     const user = await UserModel.findOne({
         email
     }).select("+password");
+
+    console.log(user);
 
     if (!user) {
         return res.status(400).json({

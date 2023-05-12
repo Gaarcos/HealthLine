@@ -6,8 +6,8 @@
   <title>Login</title>
   <link rel="stylesheet" href="/style.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
-  <script src="./public/scripts/scripts.js"></script>
-  <script src="./public/scripts/login.js"></script>
+  <script src="../public/scripts/scripts.js"></script>
+  <script src="../public/scripts/login.js"></script>
 
 </head>
 
@@ -22,7 +22,7 @@
       <div>
         <img src="imagens/Logo.png">
       </div>
-      <form id="login-form">
+      <form id="login-form" action="http://localhost:3000/auth/authenticate" method="POST">
         <input type="login" id="login" name="login" placeholder="email" autofocus required>
         <input type="password" id="senha" name="senha" placeholder="senha" required>
         <button id="logar" type="submit">ENTRAR</button>
