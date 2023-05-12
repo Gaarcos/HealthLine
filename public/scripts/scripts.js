@@ -367,21 +367,21 @@ document.getElementById('cadastroForm').addEventListener('submit', function(e) {
   
     const formData = new FormData(this);
   
-    fetch('http://localhost:3000/auth/register', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Erro ao registrar: ${response.statusText}`);
-      }
-      return response.text();
-    })
-    .then(data => {
-      console.log(data);
-      // Se o registro foi bem sucedido, redireciona para a página de login
-      window.location.href = '/login';
-    })
+    fetch('/auth/register', {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then(response => response.json())
+        .then(data => {
+          
+          if (data.message === 'Cadastro realizado com sucesso') {
+            
+            window.location.href = '/login';
+          } else {
+            
+          }
+        })
     .catch(error => console.error(error));
   });
   

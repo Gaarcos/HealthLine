@@ -8,9 +8,10 @@ const User = require('./models/user');
 
 const app = express();
 
-const viewsPath = path.join(__dirname, '/views');
+const viewsPath = path.join(__dirname, 'views');
 const imagesPath = path.join(__dirname, '/public/imagens');
 const stylesPath = path.join(__dirname, '/public/styles');
+const scriptsPath = path.join(__dirname, '/public/scripts');
 
 // Configurando o body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.static(stylesPath));
 app.use(express.static(viewsPath));
+app.use(express.static(scriptsPath));
 app.use('/imagens', express.static(imagesPath));
 
 app.get('/style.css', (req, res) => {
@@ -46,7 +48,7 @@ app.post('/auth/register', (req, res) => {
   const user = new User(req.body);
 
   user.save()
-    .then(() => res.redirect('/login'))
+    .then(() => res.status(200).json({ message: 'Cadastro realizado com sucesso' }))
     .catch(error => res.status(500).send(`Erro ao cadastrar o usuário: ${error}`));
 });
 
