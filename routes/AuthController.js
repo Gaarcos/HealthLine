@@ -18,15 +18,8 @@ const generateToken = (user = {}) => {
 
 router.post("/register", async (req, res) => {
 
-    const {
-        email
-    } = req.body;
-    const {
-        cpf
-    } = req.body;
-    const {
-        telefone
-    } = req.body;
+    const { email, cpf, telefone } = req.body;
+    
     if (await UserModel.findOne({
             email
         })) {
@@ -56,11 +49,13 @@ router.post("/register", async (req, res) => {
 
     User.password = undefined;
 
-    return res.json({
+    res.redirect("/login");
+/*    return res.json({
         error: false,
         message: "Registrado com sucesso",
         data: User,
-    });
+    });*/
+    
 })
 
 router.post("/authenticate", async (req, res) => {
