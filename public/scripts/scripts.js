@@ -385,15 +385,6 @@ function login(login, senha) {
     return login === fixedUser.login && senha === fixedUser.senha;
 }
 
-document.getElementById("logoff").addEventListener("click", logoff);
-document.getElementById("user").addEventListener("click", user);
-document.getElementById("view-recipes").addEventListener("click", viewRecipes);
-document.getElementById("symptoms").addEventListener("click", symptoms);
-document.getElementById("choose-hospital").addEventListener("click", chooseHospital);
-document.getElementById("view-queue").addEventListener("click", viewQueue);
-document.getElementById("user").addEventListener("click", user);
-
-
 document.getElementById('cadastroForm').addEventListener('submit', function (e) {
     e.preventDefault(); // impede a submissão do formulário
 
