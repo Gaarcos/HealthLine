@@ -329,7 +329,7 @@ function saveUserData() {
 
 function logoff() {
     // Redireciona para a tela de login
-    window.location.href = "../views/login.html";
+    window.location.href = "login.html";
 }
 
 function onLoginFormSubmit(event) {
