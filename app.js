@@ -23,6 +23,11 @@ app.use(express.static(viewsPath));
 app.use(express.static(scriptsPath));
 app.use('/imagens', express.static(imagesPath));
 
+
+app.get('/scripts', (req, res) => {
+    res.sendFile(path.join(viewsPath, 'scripts.js'));
+});
+
 app.get('/style.css', (req, res) => {
     res.type('text/css');
     res.sendFile(path.join(stylesPath, 'styles.css'));
