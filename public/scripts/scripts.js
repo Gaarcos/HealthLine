@@ -3,6 +3,7 @@ function voltarLogin() {
     window.location.href = '/login'
 }
 
+
 // função para validação de senha e envio de formulário de cadastro
 $(document).ready(function () {
     $('#cadastroForm').submit(function (event) {
@@ -13,7 +14,7 @@ $(document).ready(function () {
             event.preventDefault();
         } else {
             var formData = $(this).serialize();
-            $.post('/cadastro', formData, function (response) {});
+            $.post('/cadastro', formData, function (response) { });
             event.preventDefault();
         }
     });
@@ -34,6 +35,13 @@ hamburgerButton.addEventListener('click', toggleMenu);
 var menu = document.getElementById("menu-lateral");
 menu.addEventListener('transitionend', function () {
     hamburgerButton.disabled = false;
+});
+
+//código para redirecionar a pagina de cadastro
+document.getElementById("cadastroForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // previne o comportamento padrão de recarregar a página
+    // Seu código de validação e envio do formulário
+    window.location.href = "localhost:3000/login.html"; // redireciona para a página de login após o envio do formulário
 });
 
 // código para destacar o link da página atual no menu lateral
@@ -80,15 +88,15 @@ function viewRecipes() {
 function getPatientRecipes() {
     // Substitua isso pelos dados das receitas do paciente logado
     return [{
-            date: "01/01/2023",
-            medication: "Paracetamol",
-            posology: "500mg, a cada 8 horas"
-        },
-        {
-            date: "15/01/2023",
-            medication: "Ibuprofeno",
-            posology: "400mg, a cada 6 horas"
-        }
+        date: "01/01/2023",
+        medication: "Paracetamol",
+        posology: "500mg, a cada 8 horas"
+    },
+    {
+        date: "15/01/2023",
+        medication: "Ibuprofeno",
+        posology: "400mg, a cada 6 horas"
+    }
     ];
 }
 
@@ -354,18 +362,20 @@ function login(login, senha) {
     return login === fixedUser.login && senha === fixedUser.senha;
 }
 
-document.getElementById('cadastroForm').addEventListener('submit', function(e) {
+
+document.getElementById('cadastroForm').addEventListener('submit', function (e) {
     e.preventDefault(); // impede a submissão do formulário
-  
+
     const senha = document.getElementById('senha').value;
     const confirmarSenha = document.getElementById('confirmarSenha').value;
-  
+
     if (senha !== confirmarSenha) {
-      alert('As senhas não coincidem. Por favor, insira novamente.');
-      return; // interrompe a execução da função se as senhas não coincidirem
+        alert('As senhas não coincidem. Por favor, insira novamente.');
+        return; // interrompe a execução da função se as senhas não coincidirem
     }
-  
+
     const formData = new FormData(this);
+
   
     fetch('/auth/register', {
         method: 'POST',
