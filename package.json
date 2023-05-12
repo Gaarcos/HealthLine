@@ -3,6 +3,12 @@
     "concurrently": "^8.0.1"
   },
   "scripts": {
-    "start": "concurrently \"npm --prefix ./backend start\" \"npm --prefix ./frontend start\""
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.1.1"
   }
 }
