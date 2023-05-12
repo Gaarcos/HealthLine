@@ -3,12 +3,18 @@ const express = require('express');
 const AuthController = require("./routes/AuthController");
 const AdminController = require("./routes/AdminController");
 const authenticateMiddleware = require("./config/middleware");
+const bodyParser = require('body-parser');
+const User = require('./models/user');
 
 const app = express();
 
 const viewsPath = path.join(__dirname, '/views');
 const imagesPath = path.join(__dirname, '/public/imagens');
 const stylesPath = path.join(__dirname, '/public/styles');
+
+// Configurando o body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(express.json());
 app.use(express.static(stylesPath));
@@ -34,5 +40,15 @@ app.get('/login', (req, res) => {
 
 app.use("/auth", AuthController);
 app.use("/admin", authenticateMiddleware, AdminController);
+
+// Configurando a rota POST
+app.post('/auth/register', (req, res) => {
+  const user = new User(req.body);
+
+  user.save()
+    .then(() => res.redirect('/login'))
+    .catch(error => res.status(500).send(`Erro ao cadastrar o usuário: ${error}`));
+});
+
 
 module.exports = app;

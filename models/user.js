@@ -10,18 +10,18 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     trim: true,
   },
-  password: {
+  senha: {
     type: String,
     required: true,
     trim: true,
     select: false,
   },
-  fullName: {
+  nome: { 
     type: String,
     required: true,
     trim: true,
   },
-  phone: {
+  telefone: { 
     type: String,
     unique: true,
     required: true,
@@ -32,27 +32,27 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  address: {
+  endereco: { 
     type: String,
     required: true,
     trim: true,
   },
-  addressNumber: {
-    type: Number,
+  numero: { 
+    type: String,
     required: true,
     trim: true,
   },
-  addressComplement: {
+  complemento: { 
     type: String,
     required: false,
     trim: true,
   },
-  sex: {
+  genero: { 
     type: String,
     required: true,
     trim: true,
   },
-  birthDate: {
+  dataNascimento: { 
     type: Date,
     required: true,
     trim: true,
@@ -63,7 +63,7 @@ const userSchema = new mongoose.Schema({
     trim: true,
     unique: true,
   },
-  civilState: {
+  estadoCivil: { 
     type: String,
     required: true,
     trim: true,
@@ -80,8 +80,8 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function (next) {
-  const hash = await bcryptjs.hash(this.password, 10);
-  this.password = hash;
+  const hash = await bcryptjs.hash(this.senha, 10);
+  this.senha = hash;
 })
 
 const User = mongoose.model('User', userSchema);

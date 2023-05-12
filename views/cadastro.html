@@ -70,9 +70,9 @@
     </div>
     <div>
       <label for="senha">Senha:</label>
-      <input type="password" name="senha" required />
+      <input type="password" id="senha" name="senha" required />
       <label for="confirmarSenha">Confirmar Senha:</label>
-      <input type="password" name="confirmarSenha" required />
+      <input type="password" id="confirmarSenha" name="confirmarSenha" required />
     </div>
     <button type="submit">Cadastrar</button>
   </form>
@@ -80,31 +80,3 @@
 </body>
 
 </html>
-<script>
-  const form = document.querySelector('#cadastro-form');
-  const submitButton = form.querySelector('button[type="submit"]');
-
-  submitButton.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(form);
-    const json = JSON.stringify(Object.fromEntries(formData.entries()));
-    console.log(json);
-
-    // Envia o JSON para o servidor
-    fetch('http://localhost:3000/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: json
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        alert('Cadastro realizado com sucesso!');
-        window.location.href = '/login'; // redireciona para a página de login
-      })
-      .catch(error => console.error(error));
-  });
-</script>

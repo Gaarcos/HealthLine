@@ -353,3 +353,35 @@ function login(login, senha) {
 
     return login === fixedUser.login && senha === fixedUser.senha;
 }
+
+document.getElementById('cadastroForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // impede a submissão do formulário
+  
+    const senha = document.getElementById('senha').value;
+    const confirmarSenha = document.getElementById('confirmarSenha').value;
+  
+    if (senha !== confirmarSenha) {
+      alert('As senhas não coincidem. Por favor, insira novamente.');
+      return; // interrompe a execução da função se as senhas não coincidirem
+    }
+  
+    const formData = new FormData(this);
+  
+    fetch('http://localhost:3000/auth/register', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Erro ao registrar: ${response.statusText}`);
+      }
+      return response.text();
+    })
+    .then(data => {
+      console.log(data);
+      // Se o registro foi bem sucedido, redireciona para a página de login
+      window.location.href = '/login';
+    })
+    .catch(error => console.error(error));
+  });
+  
