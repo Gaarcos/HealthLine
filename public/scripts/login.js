@@ -15,14 +15,14 @@ function validateUser() {
 function onLoginFormSubmit(event) {
     event.preventDefault();
 
-    //     var login = document.getElementById("login").value;
-    //     var senha = document.getElementById("senha").value;
+        var login = document.getElementById("login").value;
+        var senha = document.getElementById("senha").value;
 
-    //     if (login(login, senha)) {
+        if (login(login, senha)) {
     window.location.href = '/home'
-    //     } else {
-    //         alert("Credenciais de login incorretas. Tente novamente.");
-    //     }
+        } else {
+            alert("Credenciais de login incorretas. Tente novamente.");
+        }
 }
 
 if (document.getElementById("entrar")) {
