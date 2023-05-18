@@ -15,28 +15,30 @@ function validateUser() {
 function onLoginFormSubmit(event) {
     event.preventDefault();
 
-//     var login = document.getElementById("login").value;
-//     var senha = document.getElementById("senha").value;
+    //     var login = document.getElementById("login").value;
+    //     var senha = document.getElementById("senha").value;
 
-//     if (login(login, senha)) {
-        window.location.href = '/home'
-//     } else {
-//         alert("Credenciais de login incorretas. Tente novamente.");
-//     }
+    //     if (login(login, senha)) {
+    window.location.href = '/home'
+    //     } else {
+    //         alert("Credenciais de login incorretas. Tente novamente.");
+    //     }
 }
 
-document.getElementById("entrar").addEventListener("click", function (event) {
-    event.preventDefault();
-    validateUser();
-});
+if (document.getElementById("entrar")) {
+    document.getElementById("entrar").addEventListener("click", function (event) {
+        event.preventDefault();
+        validateUser();
+    });
+}
+if (document.getElementById("login-form")) {
+    document.getElementById("login-form").addEventListener("click", function (event) {
+        event.preventDefault();
 
-document.getElementById('login-form').addEventListener('click', function (event) {
-    event.preventDefault();
+        var email = document.getElementById('login').value;
+        var password = document.getElementById('senha').value;
 
-    var email = document.getElementById('login').value;
-    var password = document.getElementById('senha').value;
-
-    fetch('http://localhost:3000/auth/authenticate', {
+        fetch('http://localhost:3000/auth/authenticate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,15 +48,16 @@ document.getElementById('login-form').addEventListener('click', function (event)
                 password: password,
             }),
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.token) {
-                window.location.href = '/home.html';
-            } else {
-                alert('Erro de login');
-            }
-        })
-        .catch((error) => {
-            console.error('Erro:', error);
-        });
-});
+            .then(response => response.json())
+            .then(data => {
+                if (data.token) {
+                    window.location.href = '/home.html';
+                } else {
+                    alert('Erro de login');
+                }
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+            });
+    });
+}

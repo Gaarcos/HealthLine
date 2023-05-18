@@ -26,11 +26,11 @@ $(document).ready(function () {
     });
 });
 const hamburger = document.querySelector('.hamburger');
-
-hamburger.addEventListener('click', function() {
-    this.classList.toggle('rotate');
-});
-
+if (hamburger) {
+    hamburger.addEventListener('click', function () {
+        this.classList.toggle('rotate');
+    });
+}
 // função para exibir/ocultar o menu lateral na página home.html
 function toggleMenu() {
     var menu = document.getElementById("menu-lateral");
@@ -39,21 +39,25 @@ function toggleMenu() {
 
 // associar a função toggleMenu() ao evento de clique do botão hamburguer
 var hamburgerButton = document.querySelector('.hamburger');
-hamburgerButton.addEventListener('click', toggleMenu);
-
+if (hamburgerButton) {
+    hamburgerButton.addEventListener('click', toggleMenu);
+}
 // código para reativar botão de hambúrguer quando o menu lateral for fechado
 var menu = document.getElementById("menu-lateral");
-menu.addEventListener('transitionend', function () {
-    hamburgerButton.disabled = false;
-});
+if (menu) {
+    menu.addEventListener('transitionend', function () {
+        hamburgerButton.disabled = false;
+    });
+}
 
 //código para redirecionar a pagina de cadastro
-document.getElementById("cadastroForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // previne o comportamento padrão de recarregar a página
-    // Seu código de validação e envio do formulário
-    window.location.href = "localhost:3000/login.html"; // redireciona para a página de login após o envio do formulário
-});
-
+if (document.getElementById("cadastroForm")) {
+    document.getElementById("cadastroForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // previne o comportamento padrão de recarregar a página
+        // Seu código de validação e envio do formulário
+        window.location.href = "localhost:3000/login.html"; // redireciona para a página de login após o envio do formulário
+    });
+}
 // código para destacar o link da página atual no menu lateral
 $(document).ready(function () {
     var pathname = window.location.pathname;
@@ -63,7 +67,7 @@ $(document).ready(function () {
 
 function viewRecipes() {
     var mainContent = document.getElementsByClassName("main-content")[0];
-    
+
     mainContent.innerHTML = `
         <h3 class="titulo-personalizado">Receitas</h3>
         <table id="recipes-table" class="table">
@@ -98,15 +102,15 @@ function viewRecipes() {
 function getPatientRecipes() {
     // Substitua isso pelos dados das receitas do paciente logado
     return [{
-            date: "01/01/2023",
-            medication: "Paracetamol",
-            posology: "500mg, a cada 8 horas"
-        },
-        {
-            date: "15/01/2023",
-            medication: "Ibuprofeno",
-            posology: "400mg, a cada 6 horas"
-        }
+        date: "01/01/2023",
+        medication: "Paracetamol",
+        posology: "500mg, a cada 8 horas"
+    },
+    {
+        date: "15/01/2023",
+        medication: "Ibuprofeno",
+        posology: "400mg, a cada 6 horas"
+    }
     ];
 }
 
@@ -141,25 +145,25 @@ function symptoms() {
 function getSymptomsList() {
     // Substitua isso pelos dados dos sintomas obtidos do servidor
     return [
-        "Febre", 
-        "Tosse seca", 
-        "Fadiga", 
-        "Dificuldade para respirar", 
-        "Perda de paladar", 
-        "Perda do olfato", 
-        "Dor de garganta", 
-        "Dor de cabeça", 
-        "Dores musculares", 
-        "Diarreia", 
-        "Náusea", 
-        "Conjuntivite", 
-        "Erupções cutâneas", 
-        "Dor abdominal", 
-        "Confusão mental", 
-        "Insuficiência renal", 
-        "Alterações na pressão arterial", 
-        "Inchaço nas pernas", 
-        "Convulsões", 
+        "Febre",
+        "Tosse seca",
+        "Fadiga",
+        "Dificuldade para respirar",
+        "Perda de paladar",
+        "Perda do olfato",
+        "Dor de garganta",
+        "Dor de cabeça",
+        "Dores musculares",
+        "Diarreia",
+        "Náusea",
+        "Conjuntivite",
+        "Erupções cutâneas",
+        "Dor abdominal",
+        "Confusão mental",
+        "Insuficiência renal",
+        "Alterações na pressão arterial",
+        "Inchaço nas pernas",
+        "Convulsões",
         "Paralisia facial"
     ];
 }
@@ -252,9 +256,11 @@ function viewQueue() {
 }
 // adiciona o evento de clique para o link da fila
 var filaLink = document.getElementById("view-queue");
-filaLink.addEventListener("click", function () {
-    viewQueue();
-});
+if (filaLink) {
+    filaLink.addEventListener("click", function () {
+        viewQueue();
+    });
+}
 
 function desistirFila() {
     // Implemente a lógica para desistir da fila
@@ -332,6 +338,14 @@ function logoff() {
     window.location.href = "login.html";
 }
 
+// adiciona o evento de clique para o link do logoff
+var logoffLink = document.getElementById("logoff");
+if (logoffLink) {
+    logoffLink.addEventListener("click", function () {
+        logoff();
+    });
+}
+
 function onLoginFormSubmit(event) {
     event.preventDefault();
 
@@ -344,18 +358,21 @@ function onLoginFormSubmit(event) {
         alert("Credenciais de login incorretas. Tente novamente.");
     }
 }
-
-document.getElementById("entrar").addEventListener("click", function (event) {
-    event.preventDefault();
-    validateUser();
-});
-document.getElementById("logoff").addEventListener("click", logoff);
-document.getElementById("user").addEventListener("click", user);
-document.getElementById("view-recipes").addEventListener("click", viewRecipes);
-document.getElementById("symptoms").addEventListener("click", symptoms);
-document.getElementById("choose-hospital").addEventListener("click", chooseHospital);
-document.getElementById("view-queue").addEventListener("click", viewQueue);
-document.getElementById("user").addEventListener("click", user);
+if (document.getElementById("entrar")) {
+    document.getElementById("entrar").addEventListener("click", function (event) {
+        event.preventDefault();
+        validateUser();
+    });
+}
+if (document.getElementById("logoff")) {
+    document.getElementById("logoff").addEventListener("click", logoff);
+    document.getElementById("user").addEventListener("click", user);
+    document.getElementById("view-recipes").addEventListener("click", viewRecipes);
+    document.getElementById("symptoms").addEventListener("click", symptoms);
+    document.getElementById("choose-hospital").addEventListener("click", chooseHospital);
+    document.getElementById("view-queue").addEventListener("click", viewQueue);
+    document.getElementById("user").addEventListener("click", user);
+}
 
 function closeSidebar() {
     var menuLateral = document.getElementById("menu-lateral");
@@ -384,36 +401,36 @@ function login(login, senha) {
 
     return login === fixedUser.login && senha === fixedUser.senha;
 }
+if (document.getElementById("cadastroForm")) {
+    document.getElementById("cadastroForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // impede a submissão do formulário
 
-document.getElementById('cadastroForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // impede a submissão do formulário
+        const senha = document.getElementById("senha").value;
+        const confirmarSenha = document.getElementById("confirmarSenha").value;
 
-    const senha = document.getElementById('senha').value;
-    const confirmarSenha = document.getElementById('confirmarSenha').value;
+        if (senha !== confirmarSenha) {
+            alert("As senhas não coincidem. Por favor, insira novamente.");
+            return; // interrompe a execução da função se as senhas não coincidirem
+        }
 
-    if (senha !== confirmarSenha) {
-        alert('As senhas não coincidem. Por favor, insira novamente.');
-        return; // interrompe a execução da função se as senhas não coincidirem
-    }
+        const formData = new FormData(this);
 
-    const formData = new FormData(this);
 
-  
-    fetch('/auth/register', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: { 'Content-Type': 'application/json' }
-      })
-        .then(response => response.json())
-        .then(data => {
-          
-          if (data.message === 'Cadastro realizado com sucesso') {
-            
-            window.location.href = '/login';
-          } else {
-            
-          }
+        fetch('/auth/register', {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: { 'Content-Type': 'application/json' }
         })
-    .catch(error => console.error(error));
-  });
-  
+            .then(response => response.json())
+            .then(data => {
+
+                if (data.message === 'Cadastro realizado com sucesso') {
+
+                    window.location.href = '/login';
+                } else {
+
+                }
+            })
+            .catch(error => console.error(error));
+    });
+}
