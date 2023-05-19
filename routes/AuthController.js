@@ -8,13 +8,15 @@ const UserModel = require("../models/user");
 const router = express.Router();
 
 const generateToken = (user = {}) => {
-    return jwt.sign({
-        id: user.id,
-        name: user.name
-    }, authConfig.secret, {
-        expiresIn: 86400
-    });
-}
+    return jwt.sign(
+        {
+            id: user.id,
+            name: user.name,
+        },
+        authConfig.secret,
+        { expiresIn: "24h" }
+    );
+};
 
 router.post("/register", async (req, res) => {
 
@@ -25,24 +27,24 @@ router.post("/register", async (req, res) => {
     } = req.body;
 
     if (await UserModel.findOne({
-            email
-        })) {
+        email
+    })) {
         return res.status(400).json({
             error: true,
             message: "email ja cadastrado"
         })
     }
     if (await UserModel.findOne({
-            cpf
-        })) {
+        cpf
+    })) {
         return res.status(400).json({
             error: true,
             message: "cpf ja cadastrado"
         })
     }
     if (await UserModel.findOne({
-            telefone
-        })) {
+        telefone
+    })) {
         return res.status(400).json({
             error: true,
             message: "telefone ja cadastrado"
@@ -63,42 +65,42 @@ router.post("/register", async (req, res) => {
 })
 
 router.post("/authenticate", async (req, res) => {
-
-    const {
-        email,
-        senha
-    } = req.body;
-
+    const { email, senha } = req.body;
 
     console.log(req.body);
 
-    const user = await UserModel.findOne({
-        email
-    }).select("+password");
+    try {
+        const user = await UserModel.findOne({ email }).select("+senha");
+        console.log(user);
+        if (!user) {
+            return res.status(400).json({
+                error: true,
+                message: "Usuário não encontrado",
+            });
+        }
+        
+        const passwordMatch = await bcrypt.compare(senha, user.senha);
 
-    console.log(user);
+        if (!passwordMatch) {
+            return res.status(400).json({
+                error: true,
+                message: "Senha inválida",
+            });
+        }
 
-    if (!user) {
-        return res.status(400).json({
+        user.password = undefined;
+
+        return res.json({
+            user,
+            token: generateToken(user),
+        });
+    } catch (error) {
+        console.error("Erro:", error);
+        return res.status(500).json({
             error: true,
-            message: 'Usuario nao encontrado'
-        })
+            message: "Erro ao autenticar usuário",
+        });
     }
-
-    if (!await bcrypt.compare(senha, user.password)) {
-        return res.status(400).send({
-            error: true,
-            message: 'senha invalida'
-        })
-    }
-
-    user.password = undefined;
-
-    return res.json({
-        user,
-        token: generateToken(user)
-    });
-
-})
+});
 
 module.exports = router;

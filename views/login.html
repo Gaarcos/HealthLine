@@ -6,9 +6,6 @@
   <title>Login</title>
   <link rel="stylesheet" href="/style.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet">
-  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-  <script src="/scripts.js"></script>
-  <script src="/login.js"></script>
 
 </head>
 
@@ -24,13 +21,16 @@
         <img src="imagens/Logo.png">
       </div>
       <form id="login-form">
-        <input type="login" id="login" name="login" placeholder="email" autofocus required>
+        <input type="email" id="login" name="login" placeholder="email" autofocus required>
         <input type="password" id="senha" name="senha" placeholder="senha" required>
-        <button id="logar" formaction="home.html" type="submit">ENTRAR</button>
+        <button id="logar" type="submit">ENTRAR</button>
       </form>
       <p> Ainda não tem uma conta? <a href="cadastro">Criar conta</a></p>
     </div>
   </section>
   <div class="footer">2023</div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/login.js"></script>
 </body>
+
 </html>
