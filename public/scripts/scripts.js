@@ -1,9 +1,3 @@
-// temporario para logar
-let validUsers = [{
-    username: 'joao@example.com',
-    password: '123'
-}];
-
 function voltarLogin() {
 
     window.location.href = '/login'
@@ -345,25 +339,7 @@ if (logoffLink) {
         logoff();
     });
 }
-
-function onLoginFormSubmit(event) {
-    event.preventDefault();
-
-    var login = document.getElementById("login").value;
-    var senha = document.getElementById("senha").value;
-
-    if (login(login, senha)) {
-        window.location.href = '/home'
-    } else {
-        alert("Credenciais de login incorretas. Tente novamente.");
-    }
-}
-if (document.getElementById("entrar")) {
-    document.getElementById("entrar").addEventListener("click", function (event) {
-        event.preventDefault();
-        validateUser();
-    });
-}
+ 
 if (document.getElementById("logoff")) {
     document.getElementById("logoff").addEventListener("click", logoff);
     document.getElementById("user").addEventListener("click", user);
@@ -379,28 +355,6 @@ function closeSidebar() {
     menuLateral.style.display = "none";
 }
 
-function validateUser() {
-    let login = document.getElementById("login").value;
-    let password = document.getElementById("senha").value;
-
-    // Chame a função 'login' com os valores de login e senha
-    if (login(login, password)) {
-        window.location.href = '/home'
-        return false;
-    }
-
-    alert("Usuário ou senha inválidos, tente novamente.");
-    return false;
-}
-
-function login(login, senha) {
-    var fixedUser = {
-        login: "joao@example.com",
-        senha: "123"
-    };
-
-    return login === fixedUser.login && senha === fixedUser.senha;
-}
 if (document.getElementById("cadastroForm")) {
     document.getElementById("cadastroForm").addEventListener("submit", function (e) {
         e.preventDefault(); // impede a submissão do formulário
